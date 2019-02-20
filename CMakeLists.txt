@@ -8,5 +8,5 @@ add_executable(ProjectDoGe src/main.cpp
         include/World/World.h
         include/Sky/Sky.h
         include/Ground/Ground.h
-        src/Ressource/Ressource.cpp
-        include/Ressource/Ressource.h src/World/Square.cpp include/World/Square.h src/Vegetation/Vegetation.cpp include/Vegetation/Vegetation.h)
+        src/Resource/Resource.cpp
+        include/Resource/Resource.h src/World/Square.cpp include/World/Square.h src/Vegetation/Vegetation.cpp include/Vegetation/Vegetation.h src/Ground/Soil/BasicSoil.cpp include/Ground/Soil/BasicSoil.h src/Ground/Ground.cpp include/Resource/BasicResource.h)

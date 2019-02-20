@@ -3,7 +3,11 @@
 
 
 class Sky {
+protected:
+    double luminosity;
 
+public:
+    Sky () {luminosity = 1;};
 };
 
 
