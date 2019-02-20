@@ -3,16 +3,19 @@
 
 #include "../Sky/Sky.h"
 #include "../Ground/Ground.h"
-#include "../Vegetation/Vegetation.h"
+//#include "../Vegetation/Vegetation.h"  Dependance cyclique
 
 // TODO Find Better Name ?
 class Square {
 private:
     Sky sky;
     Ground ground;
-    std::vector<Vegetation> *vegetation;
+    //Vegetation **vegetation;
 
     bool isFreeSquare();
+
+public:
+    Square();
 };
 
 

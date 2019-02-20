@@ -6,8 +6,16 @@
 #define PROJECTDOGE_VEGETATION_H
 
 
-class Vegetation {
+#include "../World/Square.h"
 
+class Vegetation {
+protected:
+    double halfLife;
+    double birth;
+
+    virtual bool death (double currentTime) = 0;
+
+    virtual void growth (Square **neighborhood) = 0;
 };
 
 
