@@ -9,8 +9,11 @@
 class Square {
 private:
     Sky sky;
-    Ground ground;
+    Ground *ground;
     std::vector<Vegetation> *vegetation;
+
+public:
+    Square() = default;
 
     bool isFreeSquare();
 };
