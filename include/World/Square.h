@@ -3,19 +3,26 @@
 
 #include "../Sky/Sky.h"
 #include "../Ground/Ground.h"
-//#include "../Vegetation/Vegetation.h"  Dependance cyclique
+#include "../Vegetation/Vegetation.h"  //Dependance cyclique resolus
+
 
 // TODO Find Better Name ?
 class Square {
-private:
+protected:
     Sky sky;
     Ground ground;
-    //Vegetation **vegetation;
+    Vegetation **vegetation;
 
     bool isFreeSquare();
 
 public:
     Square();
+
+    const Sky &getSky() const;
+
+    Ground &getGround();
+
+    Vegetation **getVegetation() const;
 };
 
 

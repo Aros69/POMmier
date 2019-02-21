@@ -16,7 +16,13 @@ public:
 protected:
     bool death (double currentTime);
 
-    void growth (Square **neighborhood);
+    void growth (bool b);
+
+    void changeModel ();
+
+    bool testGrowth (Square **neighborhood);
+
+    void changeResources (Square **neighborhood, int change);
 };
 
 

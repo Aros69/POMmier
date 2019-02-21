@@ -5,6 +5,10 @@
 class Resource {
 protected:
     double concentration;
+public:
+    double getConcentration() const;
+
+    void setConcentration(double concentration);
 };
 
 
