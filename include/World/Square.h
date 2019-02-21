@@ -1,6 +1,7 @@
 #ifndef POMMIER_SQUARE_H
 #define POMMIER_SQUARE_H
 
+#include <iostream>
 #include "../Sky/Sky.h"
 #include "../Ground/Ground.h"
 #include "../Vegetation/Vegetation.h"

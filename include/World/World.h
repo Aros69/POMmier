@@ -1,23 +1,18 @@
 #ifndef POMMIER_WORLD_H
 #define POMMIER_WORLD_H
 
-#include "Square.h"
-// Remider : world[x][y] == world[x*SizeY+y]
+#include "SquareArea.h"
 
 class World {
 private:
-    unsigned int length;
-    unsigned int width;
-    Square **squares;
+    SquareArea squareArea;
 
 public:
-    World() : World(10,10){};
+
+    World() : squareArea(10, 10) {};
 
     World(unsigned int length, unsigned int width);
 
-    ~World();
-
-    Square* getSquare(unsigned int x, unsigned int y);
 };
 
 
