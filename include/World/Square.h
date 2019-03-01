@@ -10,13 +10,13 @@
 class Square {
 protected:
     Sky sky;
-    Ground ground;
+    Ground *ground;
     Vegetation **vegetation;
 
     bool isFreeSquare();
 
 public:
-    Square();
+    Square() = default;
 
     const Sky &getSky() const;
 

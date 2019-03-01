@@ -79,3 +79,6 @@ fabric.properties
 
 # Our gitignore part
 .idea/
+POMmier.exe
+cmake_install.cmake
+Makefile
