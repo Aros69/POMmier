@@ -5,7 +5,7 @@
 
 class World {
 private:
-    SquareArea squareArea;
+    CompleteSquareArea squareArea;
 
 public:
 
@@ -13,6 +13,9 @@ public:
 
     World(unsigned int length, unsigned int width);
 
+    Square *getSquare(unsigned int x, unsigned int y);
+
+    SquareArea *getPartOfSquareArea(int xCenter, int yCenter, int radius);
 };
 
 

@@ -1,22 +1,28 @@
 #ifndef POMMIER_SQUARE_H
 #define POMMIER_SQUARE_H
 
-#include <iostream>
 #include "../Sky/Sky.h"
 #include "../Ground/Ground.h"
-#include "../Vegetation/Vegetation.h"
+#include "../Vegetation/Vegetation.h"  //Dependance cyclique resolus
+
 
 // TODO Find Better Name ?
 class Square {
-private:
+protected:
     Sky sky;
     Ground *ground;
-    std::vector<Vegetation> *vegetation;
+    Vegetation **vegetation;
+
+    bool isFreeSquare();
 
 public:
     Square() = default;
 
-    bool isFreeSquare();
+    const Sky &getSky() const;
+
+    Ground &getGround();
+
+    Vegetation **getVegetation() const;
 };
 
 

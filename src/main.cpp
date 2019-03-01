@@ -3,8 +3,10 @@
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    World w1;
-    World w2(100, 100);
+    //World w1;
+    World w2(50, 50);
+
+    w2.getPartOfSquareArea(4,4,2);
 
     return 0;
 }

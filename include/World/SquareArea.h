@@ -2,30 +2,47 @@
 #define PROJECTDOGE_SQUAREAREA_H
 
 #include <cassert>
-#include <bits/shared_ptr.h>
+#include <iostream>
 #include "Square.h"
 
 // Reminder : squareArea[x][y] == SquareArea[x*SizeY+y]
+class CompleteSquareArea;
 
 class SquareArea {
-private:
+protected:
     unsigned int length;
     unsigned int width;
-    std::shared_ptr<Square*> squares;
+    Square **squares;
 
-public:
     SquareArea() : SquareArea(10, 10) {};
 
     SquareArea(unsigned int length, unsigned int width);
 
-    ~SquareArea();
+    virtual ~SquareArea();
 
-    Square *getSquare(unsigned int x, unsigned int y);
+public:
+    Square *getSquare(int x, int y);
 
-    //void setSquare(unsigned int x, unsigned int y, Square* );
+    void setSquare(unsigned int x, unsigned int y, Square *square);
 
-    SquareArea getPartOfSquareArea(unsigned int xCenter, unsigned int yCenter,
-                                   unsigned int radius);
+    CompleteSquareArea *
+    getPartOfSquareArea(int xCenter, int yCenter, int radius);
+};
+
+class CompleteSquareArea : public SquareArea {
+
+public:
+    CompleteSquareArea(unsigned int length, unsigned int width)
+            : SquareArea(length, width) {};
+
+    virtual ~CompleteSquareArea() override {
+        for (unsigned int i = 0; i < length; ++i) {
+            for (unsigned int j = 0; j < width; ++j) {
+                delete (squares[i * width + j]);
+                squares[i * width + j] = nullptr;
+            }
+        }
+    };
 };
 
 
