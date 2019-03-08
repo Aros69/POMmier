@@ -11,7 +11,7 @@ const Sky &Square::getSky() const {
 }
 
 Ground &Square::getGround() {
-    return ground;
+    return *ground;
 }
 
 Vegetation **Square::getVegetation() const {
