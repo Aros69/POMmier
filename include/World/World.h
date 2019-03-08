@@ -5,13 +5,16 @@
 
 class World {
 private:
-    CompleteSquareArea squareArea;
+    CompleteSquareArea completeSquareArea;
 
 public:
 
-    World() : squareArea(10, 10) {};
+    World() : completeSquareArea(10, 10) {};
 
     World(unsigned int length, unsigned int width);
+
+    const CompleteSquareArea *
+    getCompleteSquareArea() const { return &completeSquareArea; };
 
     Square *getSquare(unsigned int x, unsigned int y);
 
