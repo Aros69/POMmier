@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Square.h"
 
-// Reminder : squareArea[x][y] == SquareArea[x*SizeY+y]
+// Reminder : SquareArea[x][y] == SquareArea[x*SizeY+y]
 class CompleteSquareArea;
 
 class SquareArea {
@@ -18,14 +18,18 @@ protected:
 
     SquareArea(unsigned int length, unsigned int width);
 
+public:
     virtual ~SquareArea();
 
-public:
     Square *getSquare(int x, int y);
+
+    unsigned int getLength() const { return length; };
+
+    unsigned int getWidth() const { return width; };
 
     void setSquare(unsigned int x, unsigned int y, Square *square);
 
-    CompleteSquareArea *
+    SquareArea *
     getPartOfSquareArea(int xCenter, int yCenter, int radius);
 };
 

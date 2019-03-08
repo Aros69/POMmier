@@ -4,7 +4,6 @@ SquareArea::SquareArea(unsigned int length, unsigned int width) {
     this->length = length;
     this->width = width;
     squares = new Square *[length * width];
-    //squares = new std::shared_ptr<Square> [];
     for (unsigned int i = 0; i < length; ++i) {
         for (unsigned int j = 0; j < width; ++j) {
             squares[i * width + j] = new Square();
@@ -30,9 +29,9 @@ void SquareArea::setSquare(unsigned int x, unsigned int y, Square *square) {
     squares[x * width + y] = square;
 }
 
-CompleteSquareArea *SquareArea::getPartOfSquareArea(int xCenter,
-                                                    int yCenter,
-                                                    int radius) {
+SquareArea *SquareArea::getPartOfSquareArea(int xCenter,
+                                            int yCenter,
+                                            int radius) {
     assert(radius >= 0);
     assert(xCenter >= 0 && xCenter < length);
     assert(yCenter > 0 && yCenter < width);
@@ -46,8 +45,5 @@ CompleteSquareArea *SquareArea::getPartOfSquareArea(int xCenter,
                                                   j + (yCenter - radius)));
         }
     }
-    delete (partOfSquareArea);
-    return nullptr;
-    // TODO : Think about deleting only the squareArea pointer not the square pointers in it
-    //delete()
+    return partOfSquareArea;
 }
