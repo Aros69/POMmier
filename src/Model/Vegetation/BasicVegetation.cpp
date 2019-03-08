@@ -2,7 +2,7 @@
 // Created by chris on 20/02/19.
 //
 
-#include "../../include/Vegetation/BasicVegetation.h"
+#include "BasicVegetation.h"
 
 
 bool BasicVegetation::testDeath (double currentTime) {

@@ -1,4 +1,4 @@
-#include "../../include/World/World.h"
+#include "World.h"
 
 World::World(unsigned int length, unsigned int width)
         : completeSquareArea(length, width) {}

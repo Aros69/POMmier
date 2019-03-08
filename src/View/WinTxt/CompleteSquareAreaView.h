@@ -2,7 +2,7 @@
 #define POMMIER_COMPLETESQUAREAREAVIEW_H
 
 #include "GenericView.h"
-#include "../../../include/World/SquareArea.h"
+#include "../../Model/World/SquareArea.h"
 
 class CompleteSquareAreaView : public GenericView {
 private:

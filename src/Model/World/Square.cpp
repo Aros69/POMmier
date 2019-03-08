@@ -1,4 +1,4 @@
-#include "../../include/World/Square.h"
+#include "Square.h"
 
 //#include "../../include/Vegetation/Vegetation.h"
 

@@ -1,4 +1,4 @@
-#include "../../include/Resource/Resource.h"
+#include "Resource.h"
 
 double Resource::getConcentration() const {
     return concentration;

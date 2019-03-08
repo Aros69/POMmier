@@ -4,48 +4,48 @@ project(POMmier)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(POMmier.exe src/main.cpp
-        src/World/World.cpp
-        include/World/World.h
-        include/Sky/Sky.h
-        include/Ground/Ground.h
-        src/Resource/Resource.cpp
-        include/Resource/Resource.h
-        src/World/Square.cpp
-        include/World/Square.h
-        src/Vegetation/Vegetation.cpp
-        include/Vegetation/Vegetation.h
-        src/Ground/Soil/BasicSoil.cpp
-        include/Ground/Soil/BasicSoil.h
-        src/Ground/Ground.cpp
-        include/Resource/BasicResource.h
-        src/Vegetation/BasicVegetation.cpp
-        include/Vegetation/BasicVegetation.h
-        src/World/SquareArea.cpp
-        include/World/SquareArea.h
+        src/Model/World/World.cpp
+        src/Model/World/World.h
+        src/Model/Sky/Sky.h
+        src/Model/Ground/Ground.h
+        src/Model/Resource/Resource.cpp
+        src/Model/Resource/Resource.h
+        src/Model/World/Square.cpp
+        src/Model/World/Square.h
+        src/Model/Vegetation/Vegetation.cpp
+        src/Model/Vegetation/Vegetation.h
+        src/Model/Ground/Soil/BasicSoil.cpp
+        src/Model/Ground/Soil/BasicSoil.h
+        src/Model/Ground/Ground.cpp
+        src/Model/Resource/BasicResource.h
+        src/Model/Vegetation/BasicVegetation.cpp
+        src/Model/Vegetation/BasicVegetation.h
+        src/Model/World/SquareArea.cpp
+        src/Model/World/SquareArea.h
         src/Controller/WorldController.cpp
         src/Controller/WorldController.h)
 
 add_executable(POMmierWinTxt.exe src/mainWinTxt.cpp
         include/WinTxt/winTxt.h
         include/WinTxt/winTxt.cpp
-        src/World/World.cpp
-        include/World/World.h
-        include/Sky/Sky.h
-        include/Ground/Ground.h
-        src/Resource/Resource.cpp
-        include/Resource/Resource.h
-        src/World/Square.cpp
-        include/World/Square.h
-        src/Vegetation/Vegetation.cpp
-        include/Vegetation/Vegetation.h
-        src/Ground/Soil/BasicSoil.cpp
-        include/Ground/Soil/BasicSoil.h
-        src/Ground/Ground.cpp
-        include/Resource/BasicResource.h
-        src/Vegetation/BasicVegetation.cpp
-        include/Vegetation/BasicVegetation.h
-        src/World/SquareArea.cpp
-        include/World/SquareArea.h
+        src/Model/World/World.cpp
+        src/Model/World/World.h
+        src/Model/Sky/Sky.h
+        src/Model/Ground/Ground.h
+        src/Model/Resource/Resource.cpp
+        src/Model/Resource/Resource.h
+        src/Model/World/Square.cpp
+        src/Model/World/Square.h
+        src/Model/Vegetation/Vegetation.cpp
+        src/Model/Vegetation/Vegetation.h
+        src/Model/Ground/Soil/BasicSoil.cpp
+        src/Model/Ground/Soil/BasicSoil.h
+        src/Model/Ground/Ground.cpp
+        src/Model/Resource/BasicResource.h
+        src/Model/Vegetation/BasicVegetation.cpp
+        src/Model/Vegetation/BasicVegetation.h
+        src/Model/World/SquareArea.cpp
+        src/Model/World/SquareArea.h
         src/Controller/WorldController.cpp
         src/Controller/WorldController.h
         #src/View/WinTxt/JeuTXT.cpp

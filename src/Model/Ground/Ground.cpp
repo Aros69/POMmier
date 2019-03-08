@@ -1,4 +1,4 @@
-#include "../../include/Ground/Ground.h"
+#include "Ground.h"
 
 Ground::Ground(int altitude) {
     this->altitude = altitude;

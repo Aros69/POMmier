@@ -11,7 +11,7 @@
 
 #include <chrono>
 #include "../../../include/WinTxt/winTxt.h"
-#include "../../../include/World/World.h"
+#include "../../Model/World/World.h"
 
 void txtAff(WinTXT &win, const World &world);
 

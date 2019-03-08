@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/World/World.h"
+#include "Model/World/World.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;

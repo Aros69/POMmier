@@ -2,7 +2,7 @@
 #define POMMIER_WORLDCONTROLLER_H
 
 
-#include "../../include/World/World.h"
+#include "../Model/World/World.h"
 
 class WorldController {
 protected:

@@ -1,4 +1,4 @@
-#include "../../include/World/SquareArea.h"
+#include "SquareArea.h"
 
 SquareArea::SquareArea(unsigned int length, unsigned int width) {
     this->length = length;
