@@ -14,15 +14,21 @@ public:
     BasicVegetation() {halfLife = 1.0;};
 
 protected:
-    bool death (double currentTime);
+    bool testDeath (double currentTime);
 
     void growth (bool b);
 
-    void changeModel ();
+    void changeModel (std::string *list, int state);
 
     bool testGrowth (Square **neighborhood);
 
     void changeResources (Square **neighborhood, int change);
+
+    bool testGermination (Square **neighborhood);
+
+    void decomposition ();
+
+    bool checkTimeBetweenStates (double timeBetween, double currentTime);
 };
 
 
