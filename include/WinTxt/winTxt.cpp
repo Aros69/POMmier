@@ -7,9 +7,11 @@
 #include <windows.h>
 #include <conio.h>
 #else
+
 #include <unistd.h>
 #include <termios.h>
 #include <unistd.h>
+
 #endif
 
 void termMove(int x, int y) // deplace le curseur du terminal
@@ -22,7 +24,7 @@ void termMove(int x, int y) // deplace le curseur du terminal
 #else
     char t[16];
     sprintf(t, "\033[%d;%dH", y, x);
-    printf("%s",t);
+    printf("%s", t);
 #endif
 
 }
@@ -36,7 +38,8 @@ void termClear()  // efface le terminal
 #endif
 }
 
-void termInit()      // configure la saisie : ne pas afficher les caracteres tapes
+void
+termInit()      // configure la saisie : ne pas afficher les caracteres tapes
 {
 #ifdef _WIN32
     HANDLE console = GetStdHandle(STD_INPUT_HANDLE);
@@ -54,8 +57,7 @@ void termInit()      // configure la saisie : ne pas afficher les caracteres tap
         ttystate.c_lflag &= ~ICANON;
         //minimum of number input read.
         ttystate.c_cc[VMIN] = 1;
-    }
-    else {
+    } else {
         //turn on canonical mode
         ttystate.c_lflag |= ICANON;
     }
@@ -69,41 +71,50 @@ void termInit()      // configure la saisie : ne pas afficher les caracteres tap
 #endif
 }
 
-WinTXT::WinTXT (int dx, int dy) {
+WinTXT::WinTXT(int dx, int dy) {
     dimx = dx;
     dimy = dy;
-    win = new char[dimx*dimy];
+    win = new char[dimx * dimy];
     clear();
     termInit();
 }
 
-void WinTXT::clear (char c) {
-    for(int i=0;i<dimx;++i)
-        for(int j=0;j<dimy;++j)
-            print(i,j,c);
+void WinTXT::clear(char c) {
+    for (int i = 0; i < dimx; ++i)
+        for (int j = 0; j < dimy; ++j)
+            print(i, j, c);
 }
 
-void WinTXT::print (int x, int y, char c) {
-    if (x<0) return;
-    if (y<0) return;
-    if (x>=dimx) return;
-    if (y>=dimy) return;
-    win[y*dimx+x] = c;
+void WinTXT::print(int x, int y, char c) {
+    if (x < 0) return;
+    if (y < 0) return;
+    if (x >= dimx) return;
+    if (y >= dimy) return;
+    win[y * dimx + x] = c;
 }
 
-void WinTXT::print (int x, int y, char* c) {
-    int i=0;
-    while (c[i]!='\0') {print(x+i,y,c[i]);++i;}
+void WinTXT::print(int x, int y, char *c) {
+    int i = 0;
+    while (c[i] != '\0') {
+        print(x + i, y, c[i]);
+        ++i;
+    }
 }
 
-void WinTXT::draw (int x, int y) {
-    termMove(0,0);
-    for(int j=0;j<dimy;++j) {
-        for(int i=0;i<dimx;++i)
-            printf("%c",win[j*dimx+i]);
+void WinTXT::print(int x, int y, string str) {
+    for (int i = 0; i < str.length(); ++i) {
+        print(x + i, y, str[i]);
+    }
+}
+
+void WinTXT::draw(int x, int y) {
+    termMove(0, 0);
+    for (int j = 0; j < dimy; ++j) {
+        for (int i = 0; i < dimx; ++i)
+            printf("%c", win[j * dimx + i]);
         printf("\n");
     }
-    termMove(0,dimy);
+    termMove(0, dimy);
 }
 
 #if not defined _WIN32
@@ -124,12 +135,12 @@ void WinTXT::pause() {
     system("pause");
 #else
     printf("Appuyer sur une touche\n");
-    while(!kbhit());
+    while (!kbhit());
 #endif
 }
 
 char WinTXT::getCh() { // lire un caractere si une touche a ete pressee
-    char touche=0;
+    char touche = 0;
 #ifdef _WIN32
     if (kbhit())
     {
