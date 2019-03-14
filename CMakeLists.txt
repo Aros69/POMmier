@@ -54,4 +54,4 @@ add_executable(POMmierWinTxt.exe src/mainWinTxt.cpp
         src/View/WinTxt/SimulationTxt.h
         src/View/WinTxt/CompleteSquareAreaView.cpp
         src/View/WinTxt/CompleteSquareAreaView.h
-        src/View/WinTxt/GenericView.h)
+        src/View/WinTxt/GenericView.h src/View/WinTxt/SquareView.cpp src/View/WinTxt/SquareView.h)

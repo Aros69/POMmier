@@ -6,7 +6,7 @@
 
 class WorldController {
 protected:
-    World* world;
+    World *world;
 
 public:
     WorldController() : WorldController(10, 10) {};
@@ -15,7 +15,10 @@ public:
 
     ~WorldController();
 
-    World* getWorld() const { return world; };
+    World *getWorld() const { return world; };
+
+    Square *getSquare(unsigned int x,
+                      unsigned int y) const { return world->getSquare(x, y); }
 };
 
 

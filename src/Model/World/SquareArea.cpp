@@ -34,7 +34,7 @@ SquareArea *SquareArea::getPartOfSquareArea(int xCenter,
                                             int radius) {
     assert(radius >= 0);
     assert(xCenter >= 0 && xCenter < length);
-    assert(yCenter > 0 && yCenter < width);
+    assert(yCenter >= 0 && yCenter < width);
     SquareArea *partOfSquareArea = new SquareArea(2 * radius + 1,
                                                   2 * radius + 1);
 
