@@ -2,6 +2,10 @@
 
 //#include "../../include/Vegetation/Vegetation.h"
 
+Square::Square(Vegetation *veg) {
+    vegetation = veg;
+}
+
 bool Square::isFreeSquare() {
     return true;
 }

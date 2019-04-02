@@ -3,6 +3,8 @@
 
 
 #include "../Model/World/World.h"
+#include "SquareController.h"
+#include "VegetationController.h"
 
 class WorldController {
 protected:

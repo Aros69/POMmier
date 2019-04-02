@@ -1,15 +1,14 @@
 #include <algorithm>
 #include "VegetationController.h"
 
-void VegetationController::addVegetation(Vegetation veg) {
-    vegetation.push_back(veg);
+void VegetationController::addVegetation(Vegetation *veg) {
+    vegetation = veg;
 }
 
-void VegetationController::deleteVegetation(Vegetation veg) {
-    std::vector<Vegetation>::iterator it = std::find(vegetation.begin(), vegetation.end(), veg);
-    vegetation.erase(it);
+void VegetationController::deleteVegetation() {
+    delete(vegetation);
 }
 
-void VegetationController::deleteVegetation(int it) {
-    vegetation.erase(vegetation.begin() + it);
+Vegetation* VegetationController::getVegetation() {
+    return vegetation;
 }

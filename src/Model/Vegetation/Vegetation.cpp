@@ -20,3 +20,4 @@ double Vegetation::getTimeOfDeath() const {
 void Vegetation::setTimeOfDeath(double timeOfDeath) {
     Vegetation::timeOfDeath = timeOfDeath;
 }
+

@@ -3,9 +3,16 @@
 
 
 #include "../Model/World/Square.h"
+#include "VegetationController.h"
 
 class SquareController {
     Square *square;
+
+    SquareController() = default;
+    ~SquareController();
+
+    void initializeSquare(); // initialize Square
+    void initializeSquare(Vegetation *veg); // initialize Square with a predefined Vegetation
 };
 
 

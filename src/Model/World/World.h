@@ -13,8 +13,7 @@ public:
 
     World(unsigned int length, unsigned int width);
 
-    const CompleteSquareArea *
-    getCompleteSquareArea() const { return &completeSquareArea; };
+    const CompleteSquareArea * getCompleteSquareArea() const { return &completeSquareArea; };
 
     Square *getSquare(unsigned int x, unsigned int y);
 

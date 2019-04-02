@@ -19,6 +19,7 @@ protected:
 
 public:
     Square() = default;
+    Square(Vegetation *veg);
 
     const Sky &getSky() const;
 
