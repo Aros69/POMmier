@@ -19,4 +19,4 @@ public:
 };
 
 
-#endif //POMMIER_WORLDCONTROLLER_H
+#endif POMMIER_WORLDCONTROLLER_H

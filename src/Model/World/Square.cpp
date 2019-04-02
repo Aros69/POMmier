@@ -14,6 +14,7 @@ Ground &Square::getGround() {
     return *ground;
 }
 
-Vegetation **Square::getVegetation() const {
+Vegetation *Square::getVegetation() const {
     return vegetation;
 }
+

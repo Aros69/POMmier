@@ -11,7 +11,9 @@ class Square {
 protected:
     Sky sky;
     Ground *ground;
-    Vegetation **vegetation;
+    Vegetation *vegetation;
+
+protected:
 
     bool isFreeSquare();
 
@@ -22,7 +24,7 @@ public:
 
     Ground &getGround();
 
-    Vegetation **getVegetation() const;
+    Vegetation *getVegetation() const;
 };
 
 
