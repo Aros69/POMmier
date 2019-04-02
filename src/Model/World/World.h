@@ -18,6 +18,12 @@ public:
     Square *getSquare(unsigned int x, unsigned int y);
 
     SquareArea *getPartOfSquareArea(int xCenter, int yCenter, int radius);
+
+    unsigned int
+    getLength() const { return getCompleteSquareArea()->getLength(); }
+
+    unsigned int
+    getWidth() const { return getCompleteSquareArea()->getWidth(); }
 };
 
 

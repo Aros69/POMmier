@@ -13,7 +13,13 @@ private:
 public:
     CompleteSquareAreaView() = delete;
 
-    CompleteSquareAreaView(const CompleteSquareArea *squareArea1);
+    CompleteSquareAreaView(const CompleteSquareArea *squareArea1,
+                           unsigned int offsetX,
+                           unsigned int offsetY);
+
+    unsigned int getSizeX() const { return sizeX; };
+
+    unsigned int getSizeY() const { return sizeY; };
 
     void print(WinTXT &win) override;
 
