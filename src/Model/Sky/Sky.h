@@ -8,6 +8,14 @@ protected:
 
 public:
     Sky () {luminosity = 1;};
+
+    void setLuminosity(double luminosity) {
+        Sky::luminosity = luminosity;
+    }
+
+    double getLuminosity() const {
+        return luminosity;
+    };
 };
 
 

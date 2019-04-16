@@ -10,7 +10,7 @@ bool Square::isFreeSquare() {
     return true;
 }
 
-const Sky &Square::getSky() const {
+Sky &Square::getSky() {
     return sky;
 }
 
@@ -18,7 +18,7 @@ Ground &Square::getGround() {
     return *ground;
 }
 
-Vegetation *Square::getVegetation() const {
+Vegetation *Square::getVegetation() {
     return vegetation;
 }
 

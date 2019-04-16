@@ -21,11 +21,11 @@ public:
     Square() = default;
     Square(Vegetation *veg);
 
-    const Sky &getSky() const;
+    Sky &getSky();
 
     Ground &getGround();
 
-    Vegetation *getVegetation() const;
+    Vegetation *getVegetation();
 };
 
 
