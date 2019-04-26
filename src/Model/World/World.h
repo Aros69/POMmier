@@ -2,7 +2,7 @@
 #define POMMIER_WORLD_H
 
 #include "SquareArea.h"
-
+/*
 class World {
 private:
     CompleteSquareArea completeSquareArea;
@@ -24,7 +24,7 @@ public:
 
     unsigned int
     getWidth() const { return getCompleteSquareArea()->getWidth(); }*/
-};
+//};
 
 
 #endif //POMMIER_WORLD_H

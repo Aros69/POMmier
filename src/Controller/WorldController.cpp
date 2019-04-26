@@ -30,7 +30,7 @@ void WorldController::worldStep() {
             //kill plants
             if (rand() % 100 + getWorld()->getSquare(i, j).getVegetation()->getHalfLife() > 100
             && getWorld()->getSquare(i, j).getVegetation()->getTimeOfDeath() == 0){
-                getWorld()->getSquare(i, j).getVegetation()->setTimeOfDeath(numberOfSteps);
+                treeFall(rand()%world->sizeOfArea(), rand()%world->sizeOfArea());
             }
             //create new plants
             if (getWorld()->getSquare(i, j).getVegetation()->getTimeOfDeath() == 0
@@ -50,6 +50,55 @@ void WorldController::worldStep() {
             //grow plants
             if (getWorld()->getSquare(i, j).getVegetation()->getTimeOfDeath() == 0) {
                 getWorld()->getSquare(i, j).getVegetation()->incrementStateOfPlant();
+            }
+        }
+    }
+}
+
+
+void WorldController::treeFall(int x, int y) {
+    world->getSquare(x, y).getVegetation()->setTimeOfDeath(numberOfSteps);
+    int directionOfFall = rand() % 8; // 0 up, 1 left, 2 down, 3 right, 4 top-left...
+
+    if (rand() % 20 == 0) {
+        if (directionOfFall == 0) {
+            if (world->getSquare(x, y+1).getVegetation()->getTimeOfDeath() == 0) {
+                treeFall(x, y + 1);
+            }
+        }
+        else if (directionOfFall == 1) {
+            if (world->getSquare(x - 1, y).getVegetation()->getTimeOfDeath() == 0) {
+                treeFall(x - 1, y);
+            }
+        }
+        else if (directionOfFall == 2) {
+            if (world->getSquare(x, y - 1).getVegetation()->getTimeOfDeath() == 0) {
+                treeFall(x, y - 1);
+            }
+        }
+        else if (directionOfFall == 3) {
+            if (world->getSquare(x + 1, y).getVegetation()->getTimeOfDeath() == 0) {
+                treeFall(x + 1, y);
+            }
+        }
+        else if (directionOfFall == 4) {
+            if (world->getSquare(x - 1, y + 1).getVegetation()->getTimeOfDeath() == 0) {
+                treeFall(x-1, y + 1);
+            }
+        }
+        else if (directionOfFall == 5) {
+            if (world->getSquare(x - 1, y -1 ).getVegetation()->getTimeOfDeath() == 0) {
+                treeFall(x - 1, y - 1);
+            }
+        }
+        else if (directionOfFall == 6) {
+            if (world->getSquare(x + 1, y - 1).getVegetation()->getTimeOfDeath() == 0) {
+                treeFall(x + 1, y - 1);
+            }
+        }
+        else {
+            if (world->getSquare(x + 1, y + 1).getVegetation()->getTimeOfDeath() == 0) {
+                treeFall(x + 1, y + 1);
             }
         }
     }
