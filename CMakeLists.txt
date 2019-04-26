@@ -31,6 +31,8 @@ add_executable(POMmierQt.exe src/mainQt.cpp
         ${MODEL_SRC_FILES} src/View/Qt/SimulationQT.h
         src/View/Qt/SimulationQT.cpp
         src/View/Qt/QtVegetationView.cpp
-        src/View/Qt/QtVegetationView.h)
+        src/View/Qt/QtVegetationView.h
+        src/Controller/WorldController.cpp
+        src/Controller/WorldController.h)
 
 target_link_libraries(POMmierQt.exe Qt5::Widgets)

@@ -7,6 +7,7 @@
 #include <QtWidgets/QGraphicsScene>
 #include <QtWidgets/QGraphicsView>
 
+#include "../../Controller/WorldController.h"
 #include "../../Model/QtModel/SimulationModel.h"
 #include "QtVegetationView.h"
 
@@ -15,9 +16,10 @@ private:
     QApplication *app;
     QGraphicsView *view;
     QGraphicsScene scene;
-
-    SimulationModel model;
     std::list<QtVegetationView> vegetationViews;
+
+    //SimulationModel model;
+    WorldController controller;
 
     void initModel();
 
