@@ -10,22 +10,18 @@ class CompleteSquareArea;
 
 class SquareArea {
 protected:
-    unsigned int length;
-    unsigned int width;
-    Square **squares;
+    std::vector <Square> squares;
+public:
+
+    int sizeOfArea () {return squares.size();};
 
     SquareArea() : SquareArea(10, 10) {};
 
     SquareArea(unsigned int length, unsigned int width);
 
-public:
     virtual ~SquareArea();
 
-    Square *getSquare(int x, int y);
-
-    unsigned int getLength() const { return length; };
-
-    unsigned int getWidth() const { return width; };
+    Square getSquare(int x, int y);
 
     void setSquare(unsigned int x, unsigned int y, Square *square);
 
@@ -39,14 +35,14 @@ public:
     CompleteSquareArea(unsigned int length, unsigned int width)
             : SquareArea(length, width) {};
 
-    virtual ~CompleteSquareArea() override {
+    /*virtual ~CompleteSquareArea() override {
         for (unsigned int i = 0; i < length; ++i) {
             for (unsigned int j = 0; j < width; ++j) {
                 delete (squares[i * width + j]);
                 squares[i * width + j] = nullptr;
             }
         }
-    };
+    };*/
 };
 
 

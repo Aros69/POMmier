@@ -8,7 +8,7 @@
 
 class WorldController {
 protected:
-    World *world;
+    SquareArea *world;
     int numberOfSteps;
 
 public:
@@ -21,9 +21,9 @@ public:
 
     ~WorldController();
 
-    World *getWorld() const { return world; };
+    SquareArea *getWorld() const { return world; };
 
-    Square *getSquare(unsigned int x,
+    Square getSquare(unsigned int x,
                       unsigned int y) const { return world->getSquare(x, y); }
 
     void worldGeneration(); // generate the world at random

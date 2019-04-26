@@ -1,35 +1,36 @@
 #include "SquareArea.h"
 
-SquareArea::SquareArea(unsigned int length, unsigned int width) {
-    this->length = length;
-    this->width = width;
-    squares = new Square *[length * width];
-    for (unsigned int i = 0; i < length; ++i) {
-        for (unsigned int j = 0; j < width; ++j) {
-            squares[i * width + j] = new Square();
-        }
-    }
-}
 
+/*
 SquareArea::~SquareArea() {
     delete[](squares);
     squares = nullptr;
 }
-
-Square *SquareArea::getSquare(int x, int y) {
+*/
+Square SquareArea::getSquare(int x, int y) {
+    for (int i = 0; i < squares.size(); i++) {
+        if (squares.at(i).getX() == x
+        && squares.at(i).getY() == y) {
+            return squares.at(i);
+        }
+    }
+}
+/*
+Square SquareArea::getSquare(int x, int y) {
     if (x >= length || x < 0 || y >= width || y < 0) {
         return nullptr;
     } else {
         return squares[x * width + y];
     }
 }
-
+ */
+/*
 void SquareArea::setSquare(unsigned int x, unsigned int y, Square *square) {
     delete getSquare(x, y);
     squares[x * width + y] = square;
 }
 
-SquareArea *SquareArea::getPartOfSquareArea(int xCenter,
+SquareArea SquareArea::getPartOfSquareArea(int xCenter,
                                             int yCenter,
                                             int radius) {
     assert(radius >= 0);
@@ -47,3 +48,4 @@ SquareArea *SquareArea::getPartOfSquareArea(int xCenter,
     }
     return partOfSquareArea;
 }
+ */

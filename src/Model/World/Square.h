@@ -12,12 +12,25 @@ protected:
     Sky sky;
     Ground *ground;
     Vegetation *vegetation;
+    int x;
+    int y;
+public:
+    void setSky(const Sky &sky);
 
-protected:
+    void setGround(Ground *ground);
+
+    void setVegetation(Vegetation *vegetation);
+
+    void setX(int x);
+
+    void setY(int y);
+
+    int getX() const;
+
+    int getY() const;
 
     bool isFreeSquare();
 
-public:
     Square() = default;
     Square(Vegetation *veg);
 
