@@ -1,4 +1,4 @@
-#ifndef PROJECTDOGE_SQUAREAREA_H
+    #ifndef PROJECTDOGE_SQUAREAREA_H
 #define PROJECTDOGE_SQUAREAREA_H
 
 #include <cassert>

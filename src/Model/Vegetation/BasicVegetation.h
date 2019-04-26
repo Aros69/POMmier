@@ -13,6 +13,8 @@ class BasicVegetation : public Vegetation{
 public:
     BasicVegetation() {halfLife = 1.0;};
 
+    virtual ~BasicVegetation() = default;
+
 protected:
     bool testDeath (double currentTime);
 

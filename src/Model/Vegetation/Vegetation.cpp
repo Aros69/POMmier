@@ -1,7 +1,3 @@
-//
-// Created by chris on 20/02/19.
-//
-
 #include "../World/Square.h"
 #include "Vegetation.h"
 
