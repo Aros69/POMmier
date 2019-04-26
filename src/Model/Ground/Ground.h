@@ -18,6 +18,8 @@ public:
 
     void setAltitude(int altitude) {this->altitude = altitude;}
     void setResources(int resources) {this->resources.at(0).setConcentration(resources);}
+
+    virtual void setAvailableResources() = 0; //set the available resources in the terrain
 };
 
 

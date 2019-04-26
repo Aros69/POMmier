@@ -23,7 +23,7 @@ add_executable(POMmier.exe src/main.cpp
         src/Model/World/SquareArea.cpp
         src/Model/World/SquareArea.h
         src/Controller/WorldController.cpp
-        src/Controller/WorldController.h)
+        src/Controller/WorldController.h src/Model/Resource/BasicResource.cpp src/Controller/VegetationController.cpp src/Controller/VegetationController.h src/Controller/SquareController.cpp src/Controller/SquareController.h)
 
 add_executable(POMmierWinTxt.exe src/mainWinTxt.cpp
         include/WinTxt/winTxt.h

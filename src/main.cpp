@@ -6,7 +6,7 @@ int main() {
     //World w1;
     World w2(50, 50);
 
-    w2.getPartOfSquareArea(4,4,2);
+    w2.getSquare(3,20);
 
     return 0;
 }

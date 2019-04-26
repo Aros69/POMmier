@@ -10,7 +10,7 @@ double Vegetation::getTimeOfBirth() const {
 }
 
 void Vegetation::setTimeOfBirth(double timeOfBirth) {
-    Vegetation::timeOfBirth = timeOfBirth;
+    this->timeOfBirth = timeOfBirth;
 }
 
 double Vegetation::getTimeOfDeath() const {
@@ -18,5 +18,37 @@ double Vegetation::getTimeOfDeath() const {
 }
 
 void Vegetation::setTimeOfDeath(double timeOfDeath) {
-    Vegetation::timeOfDeath = timeOfDeath;
+    this->timeOfDeath = timeOfDeath;
 }
+
+double Vegetation::getHalfLife() const {
+    return halfLife;
+}
+
+void Vegetation::setLastStateChange(double LastStateChange) {
+    this->LastStateChange = LastStateChange;
+}
+
+double Vegetation::getLastStateChange() const {
+    return LastStateChange;
+}
+
+int Vegetation::getStateOfPlant() const {
+    return stateOfPlant;
+}
+
+void Vegetation::setStateOfPlant(int stateOfPlant) {
+    this->stateOfPlant = stateOfPlant;
+}
+
+void Vegetation::incrementStateOfPlant() {
+    this->stateOfPlant++;
+}
+
+
+
+
+
+
+
+

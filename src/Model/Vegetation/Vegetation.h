@@ -17,6 +17,20 @@ protected:
     double timeOfBirth;
     double timeOfDeath;
     double LastStateChange = timeOfBirth;
+public:
+    double getHalfLife() const;
+
+    int getStateOfPlant() const;
+
+    void setStateOfPlant(int stateOfPlant);
+
+    void incrementStateOfPlant();
+
+    void setLastStateChange(double LastStateChange);
+
+    double getLastStateChange() const;
+
+protected:
 
     int stateOfPlant = 0;
     std::string listStateOfPlant [2] = {"pathToModel1", "pathToModel2"};

@@ -11,7 +11,7 @@
 
 class BasicVegetation : public Vegetation{
 public:
-    BasicVegetation() {halfLife = 1.0;};
+    BasicVegetation() {halfLife = 50.0;};
 
 protected:
     bool testDeath (double currentTime);
