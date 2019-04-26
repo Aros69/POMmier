@@ -47,11 +47,14 @@ SimulationQt::createVegetation(double posX, double posY, double orientation) {
 
 int SimulationQt::launchSimulation() {
     view->show();
+    //std::thread t(&SimulationQt::updateSimulation, this);
     app->exec();
+
 }
 
 int SimulationQt::updateSimulation() {
     int quit = 0;
+    std::cout<<"ok\n";
     while (quit == 0) {
         model.update();
         for (const QtVegetationView view : vegetationViews) {

@@ -6,4 +6,9 @@
 
 BasicSoil::BasicSoil(int altitude) : Ground(altitude) {
     this->altitude = altitude;
+    setAvailableResources();
+}
+
+void BasicSoil::setAvailableResources() {
+    setResources(1);
 }

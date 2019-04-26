@@ -18,27 +18,19 @@ file(GLOB_RECURSE MODEL_SRC_FILES
 add_executable(POMmier.exe src/main.cpp
         ${MODEL_SRC_FILES}
         src/Controller/WorldController.cpp
-        src/Controller/WorldController.h)
-
-add_executable(POMmierWinTxt.exe src/mainWinTxt.cpp
-        include/WinTxt/winTxt.h
-        include/WinTxt/winTxt.cpp
-        ${MODEL_SRC_FILES}
-        src/Controller/WorldController.cpp
         src/Controller/WorldController.h
-        src/View/WinTxt/SimulationTxt.cpp
-        src/View/WinTxt/SimulationTxt.h
-        src/View/WinTxt/CompleteSquareAreaView.cpp
-        src/View/WinTxt/CompleteSquareAreaView.h
-        src/View/WinTxt/GenericView.h
-        src/View/WinTxt/SquareView.cpp
-        src/View/WinTxt/SquareView.h)
-
+        src/Controller/VegetationController.cpp
+        src/Controller/VegetationController.h
+        src/Controller/SquareController.cpp
+        src/Controller/SquareController.h)
 
 # Find the QtWidgets library
 find_package(Qt5Widgets CONFIG REQUIRED)
 
 add_executable(POMmierQt.exe src/mainQt.cpp
-        ${MODEL_SRC_FILES} src/View/Qt/SimulationQT.h src/Model/QtModel/SimulationModel.cpp src/Model/QtModel/SimulationModel.h src/Model/QtModel/QtVegetation.cpp src/Model/QtModel/QtVegetation.h src/View/Qt/SimulationQT.cpp src/View/Qt/QtVegetationView.cpp src/View/Qt/QtVegetationView.h)
+        ${MODEL_SRC_FILES} src/View/Qt/SimulationQT.h
+        src/View/Qt/SimulationQT.cpp
+        src/View/Qt/QtVegetationView.cpp
+        src/View/Qt/QtVegetationView.h)
 
 target_link_libraries(POMmierQt.exe Qt5::Widgets)
