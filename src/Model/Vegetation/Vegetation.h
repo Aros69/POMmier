@@ -1,13 +1,7 @@
-//
-// Created by chris on 20/02/19.
-//
-
 #ifndef PROJECTDOGE_VEGETATION_H
 #define PROJECTDOGE_VEGETATION_H
 
 #include <string>
-
-//#include "../World/Square.h"
 
 class Square;
 
@@ -15,7 +9,7 @@ class Vegetation {
 protected:
     double halfLife;
     double timeOfBirth;
-    double timeOfDeath;
+    double timeOfDeath = -1;
     double LastStateChange = timeOfBirth;
 public:
     double getHalfLife() const;
@@ -57,6 +51,8 @@ protected:
                                                                                         // previous change of state
 
 public:
+
+    virtual ~Vegetation() = default;
     double getTimeOfBirth() const;
     void setTimeOfBirth(double timeOfBirth);
 

@@ -3,55 +3,36 @@ project(POMmier)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(POMmier.exe src/main.cpp
-        src/Model/World/World.cpp
-        src/Model/World/World.h
-        src/Model/Sky/Sky.h
-        src/Model/Ground/Ground.h
-        src/Model/Resource/Resource.cpp
-        src/Model/Resource/Resource.h
-        src/Model/World/Square.cpp
-        src/Model/World/Square.h
-        src/Model/Vegetation/Vegetation.cpp
-        src/Model/Vegetation/Vegetation.h
-        src/Model/Ground/Soil/BasicSoil.cpp
-        src/Model/Ground/Soil/BasicSoil.h
-        src/Model/Ground/Ground.cpp
-        src/Model/Resource/BasicResource.h
-        src/Model/Vegetation/BasicVegetation.cpp
-        src/Model/Vegetation/BasicVegetation.h
-        src/Model/World/SquareArea.cpp
-        src/Model/World/SquareArea.h
-        src/Controller/WorldController.cpp
-        src/Controller/WorldController.h src/Model/Resource/BasicResource.cpp src/Controller/VegetationController.cpp src/Controller/VegetationController.h src/Controller/SquareController.cpp src/Controller/SquareController.h)
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Instruct CMake to run moc automatically when needed
+set(CMAKE_AUTOMOC ON)
+# Create code from a list of Qt designer ui files
+set(CMAKE_AUTOUIC ON)
 
-add_executable(POMmierWinTxt.exe src/mainWinTxt.cpp
-        include/WinTxt/winTxt.h
-        include/WinTxt/winTxt.cpp
-        src/Model/World/World.cpp
-        src/Model/World/World.h
-        src/Model/Sky/Sky.h
-        src/Model/Ground/Ground.h
-        src/Model/Resource/Resource.cpp
-        src/Model/Resource/Resource.h
-        src/Model/World/Square.cpp
-        src/Model/World/Square.h
-        src/Model/Vegetation/Vegetation.cpp
-        src/Model/Vegetation/Vegetation.h
-        src/Model/Ground/Soil/BasicSoil.cpp
-        src/Model/Ground/Soil/BasicSoil.h
-        src/Model/Ground/Ground.cpp
-        src/Model/Resource/BasicResource.h
-        src/Model/Vegetation/BasicVegetation.cpp
-        src/Model/Vegetation/BasicVegetation.h
-        src/Model/World/SquareArea.cpp
-        src/Model/World/SquareArea.h
+# Create the list of src files for gkit
+# Not reccomended practice by cmake developer
+file(GLOB_RECURSE MODEL_SRC_FILES
+        "src/Model/*")
+
+add_executable(POMmier.exe src/main.cpp
+        ${MODEL_SRC_FILES}
         src/Controller/WorldController.cpp
         src/Controller/WorldController.h
-        #src/View/WinTxt/JeuTXT.cpp
-        #src/View/WinTxt/JeuTXT.h
-        src/View/WinTxt/SimulationTxt.cpp
-        src/View/WinTxt/SimulationTxt.h
-        src/View/WinTxt/CompleteSquareAreaView.cpp
-        src/View/WinTxt/CompleteSquareAreaView.h
-        src/View/WinTxt/GenericView.h src/View/WinTxt/SquareView.cpp src/View/WinTxt/SquareView.h)
+        src/Controller/VegetationController.cpp
+        src/Controller/VegetationController.h
+        src/Controller/SquareController.cpp
+        src/Controller/SquareController.h)
+
+# Find the QtWidgets library
+find_package(Qt5Widgets CONFIG REQUIRED)
+
+add_executable(POMmierQt.exe src/mainQt.cpp
+        ${MODEL_SRC_FILES} src/View/Qt/SimulationQT.h
+        src/View/Qt/SimulationQT.cpp
+        src/View/Qt/QtVegetationView.cpp
+        src/View/Qt/QtVegetationView.h
+        src/Controller/WorldController.cpp
+        src/Controller/WorldController.h)
+
+target_link_libraries(POMmierQt.exe Qt5::Widgets)

@@ -1,8 +1,9 @@
-#ifndef PROJECTDOGE_SQUAREAREA_H
+    #ifndef PROJECTDOGE_SQUAREAREA_H
 #define PROJECTDOGE_SQUAREAREA_H
 
 #include <cassert>
 #include <iostream>
+#include <vector>
 #include "Square.h"
 
 // Reminder : SquareArea[x][y] == SquareArea[x*SizeY+y]
@@ -11,9 +12,11 @@ class CompleteSquareArea;
 class SquareArea {
 protected:
     std::vector <Square> squares;
-public:
+    unsigned int length;
+    unsigned int width;
 
-    int sizeOfArea () {return squares.size();};
+
+public:
 
     SquareArea(int x, int y);
 
@@ -21,7 +24,11 @@ public:
 
     ~SquareArea();
 
-    Square getSquare(int x, int y);
+    Square &getSquare(int x, int y);
+
+    unsigned int getLength() const;
+
+    unsigned int getWidth() const;
 
     void setSquare(unsigned int x, unsigned int y, Square *square);
 
@@ -32,7 +39,7 @@ public:
 /*class CompleteSquareArea : public SquareArea {
 
 public:
-    CompleteSquareArea(unsigned int length, unsigned int width)
+    CompleteSquareArea(int length, int width)
             : SquareArea(length, width) {};
 
     /*virtual ~CompleteSquareArea() override {
