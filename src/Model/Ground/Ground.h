@@ -2,24 +2,33 @@
 #define POMMIER_GROUND_H
 
 
-#include <vector>
 #include "../Resource/Resource.h"
+#include <list>
 
 class Ground {
 protected:
     int altitude;
-    std::vector<Resource> resources;
+    std::list<Resource> resources;
 
 public:
+    Ground();
+
     explicit Ground(int altitude);
 
-    int getAltitude() const {return altitude;}
-    const std::vector <Resource> &getResources() const {return resources;}
+    ~Ground();
 
-    void setAltitude(int altitude) {this->altitude = altitude;}
-    void setResources(int resources) {this->resources.at(0).setConcentration(resources);}
+    int getAltitude() const { return altitude; }
 
-    virtual void setAvailableResources() = 0; //set the available resources in the terrain
+    const std::list<Resource> &getResources() const { return resources; }
+
+    void setAltitude(int altitude) { this->altitude = altitude; }
+
+    void setResources(int resources) {
+        this->resources.front().setConcentration(resources);
+    }
+
+    //set the available resources in the terrain
+    void setAvailableResources() { setResources(1); };
 };
 
 

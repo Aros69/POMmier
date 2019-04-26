@@ -1,31 +1,44 @@
 #include "SquareArea.h"
 
 
-
 SquareArea::SquareArea(int x, int y) {
-    for (int i = 0; i < x*y; i++) {
+    squares = std::vector<Square>(0);
+    length = x;
+    width = y;
+    for (int i = 0; i < x * y; i++) {
         squares.push_back(Square());
     }
 }
 
 SquareArea::~SquareArea() {
-    squares.empty();
+    squares.clear();
 }
 
+Square &SquareArea::getSquare(int x, int y) {
+    if (x >= length || x < 0 || y >= width || y < 0) {
+        std::cout<<"ERROR WHEN GETTING SQUARE\n";
+        return squares[0];
+        // TODO WHEN RELEASE
+        //exit(0);
+    } else {
+        return squares[x * width + y];
+    }
+}
+
+unsigned int SquareArea::getLength() const {
+    return length;
+}
+
+unsigned int SquareArea::getWidth() const {
+    return width;
+}
+/*
 Square SquareArea::getSquare(int x, int y) {
     for (int i = 0; i < squares.size(); i++) {
         if (squares.at(i).getX() == x
         && squares.at(i).getY() == y) {
             return squares.at(i);
         }
-    }
-}
-/*
-Square SquareArea::getSquare(int x, int y) {
-    if (x >= length || x < 0 || y >= width || y < 0) {
-        return nullptr;
-    } else {
-        return squares[x * width + y];
     }
 }
  */

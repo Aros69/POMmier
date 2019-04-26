@@ -10,8 +10,8 @@ QtVegetation::QtVegetation(Vegetation *_vegetation, double posX, double posY,
 }
 
 QtVegetation::~QtVegetation() {
-    delete vegetation;
-    vegetation = nullptr;
+    /*delete vegetation;
+    vegetation = nullptr;*/
 }
 
 double QtVegetation::getPositionX() const {
@@ -39,7 +39,7 @@ void QtVegetation::setOrientation(double orientation) {
 }
 
 bool QtVegetation::isDead() const {
-    return vegetation->getTimeOfDeath() != -1;
+    return vegetation->getTimeOfDeath() != 0;
 }
 
 

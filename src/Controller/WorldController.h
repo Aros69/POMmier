@@ -15,7 +15,7 @@ public:
     time_t getTimer() const;
 
 public:
-    WorldController() : WorldController(10, 10) {};
+    //WorldController() : WorldController(10, 10) {};
 
     WorldController(unsigned int length, unsigned int width);
 

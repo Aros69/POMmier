@@ -1,3 +1,5 @@
+#include <iostream>
+#include <src/Model/Vegetation/BasicVegetation.h>
 #include "Square.h"
 
 //#include "../../include/Vegetation/Vegetation.h"
@@ -15,7 +17,7 @@ Sky &Square::getSky() {
 }
 
 Ground &Square::getGround() {
-    return *ground;
+    return ground;
 }
 
 Vegetation *Square::getVegetation() {
@@ -34,7 +36,7 @@ void Square::setSky(const Sky &sky) {
     Square::sky = sky;
 }
 
-void Square::setGround(Ground *ground) {
+void Square::setGround(Ground ground) {
     Square::ground = ground;
 }
 

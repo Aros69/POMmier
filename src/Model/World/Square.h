@@ -10,14 +10,14 @@
 class Square {
 protected:
     Sky sky;
-    Ground *ground;
+    Ground ground;
     Vegetation *vegetation;
     int x;
     int y;
 public:
     void setSky(const Sky &sky);
 
-    void setGround(Ground *ground);
+    void setGround(Ground ground);
 
     void setVegetation(Vegetation *vegetation);
 

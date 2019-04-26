@@ -1,4 +1,5 @@
 #include <QtWidgets/QGraphicsRectItem>
+#include <cmath>
 #include "SimulationQT.h"
 
 SimulationQt::SimulationQt(QApplication *_app) {
@@ -10,14 +11,18 @@ SimulationQt::SimulationQt(QApplication *_app) {
 }
 
 SimulationQt::~SimulationQt() {
+    delete (controller);
+    controller = nullptr;
     delete (view);
     view = nullptr;
 }
 
 void SimulationQt::initModel() {
     // TODO Do a better function
-    controller = WorldController(500, 500);
-
+    controller = new WorldController(256, 128);
+    std::cout << "Alloc ok\n";
+    controller->worldGeneration();
+    std::cout << "Init ok\n";
     //model = SimulationModel(1000, 500);
     /*createVegetation(100, 100, 0);
     createVegetation(200, 0, 90);
@@ -30,16 +35,25 @@ void SimulationQt::initScene() {
     /*QGraphicsRectItem *temp = new QGraphicsRectItem(0, 0,
                                                     model.getLengthModel(),
                                                     model.getHeightModel());*/
-    QGraphicsRectItem * temp = new QGraphicsRectItem(0, 0,
-                                                     controller.getWorld()->sizeOfArea() /
-                                                     2,
-                                                     controller.getWorld()->sizeOfArea() /
-                                                     2);
+    QGraphicsRectItem *temp = new QGraphicsRectItem(0, 0,
+                                                    controller->getWorld()->getLength()*4,
+                                                    controller->getWorld()->getWidth()*4);
     temp->setPen(Qt::NoPen);
     scene.addItem(temp);
-    for (const QtVegetationView view : vegetationViews) {
-        view.draw();
+
+    SquareArea *world = controller->getWorld();
+    for (int i = 0; i < controller->getWorld()->getLength(); i++) {
+        for (int j = 0; j < controller->getWorld()->getWidth(); j++) {
+            if (world->getSquare(i, j).getVegetation() != nullptr) {
+                vegetationViews.push_back(QtVegetationView(
+                        new QtVegetation(world->getSquare(i, j).getVegetation(),
+                                         i, j, 0), &scene));
+            }
+        }
     }
+    /*for (const QtVegetationView view : vegetationViews) {
+        view.draw();
+    }*/
 }
 
 /*void
@@ -53,19 +67,23 @@ int SimulationQt::launchSimulation() {
     view->show();
     //std::thread t(&SimulationQt::updateSimulation, this);
     updateSimulation();
+    for (const QtVegetationView view : vegetationViews) {
+        view.draw();
+    }
     app->exec();
 
 }
 
 int SimulationQt::updateSimulation() {
     int quit = 0;
-    while (quit < 10) {
+    while (quit < 100) {
         //model.update();
-        controller.worldStep();
-        for (const QtVegetationView view : vegetationViews) {
+        controller->worldStep();
+        /*for (const QtVegetationView view : vegetationViews) {
             view.draw();
-        }
+        }*/
         ++quit;
         //scene.update(0,0, model.getLengthModel(), model.getHeightModel());
     }
+
 }

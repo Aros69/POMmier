@@ -19,7 +19,7 @@ private:
     std::list<QtVegetationView> vegetationViews;
 
     //SimulationModel model;
-    WorldController controller;
+    WorldController * controller;
 
     void initModel();
 
