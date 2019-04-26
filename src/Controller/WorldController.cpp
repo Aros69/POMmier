@@ -1,6 +1,7 @@
 #include "WorldController.h"
 
 WorldController::WorldController(unsigned int length, unsigned int width) {
+    world = new SquareArea(length, width);
     numberOfSteps = 0;
 }
 
