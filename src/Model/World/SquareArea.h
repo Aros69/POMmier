@@ -15,7 +15,7 @@ public:
 
     int sizeOfArea () {return squares.size();};
 
-    SquareArea() : SquareArea(10, 10) {};
+    SquareArea(int x, int y);
 
     SquareArea(unsigned int length, unsigned int width);
 
