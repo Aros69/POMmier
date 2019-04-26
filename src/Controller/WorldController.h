@@ -29,6 +29,8 @@ public:
     void worldGeneration(); // generate the world at random
 
     void worldStep(); // the next step in the world, more vegetation is born, grows or dies
+
+    void treeFall (int x, int y); // kill plant and chance of killing more plants
 };
 
 

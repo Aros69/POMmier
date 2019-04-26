@@ -8,6 +8,10 @@ SquareArea::SquareArea(int x, int y) {
     }
 }
 
+SquareArea::~SquareArea() {
+    squares.empty();
+}
+
 Square SquareArea::getSquare(int x, int y) {
     for (int i = 0; i < squares.size(); i++) {
         if (squares.at(i).getX() == x

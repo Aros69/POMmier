@@ -19,7 +19,7 @@ public:
 
     SquareArea(unsigned int length, unsigned int width);
 
-    virtual ~SquareArea();
+    ~SquareArea();
 
     Square getSquare(int x, int y);
 
@@ -29,7 +29,7 @@ public:
     getPartOfSquareArea(int xCenter, int yCenter, int radius);
 };
 
-class CompleteSquareArea : public SquareArea {
+/*class CompleteSquareArea : public SquareArea {
 
 public:
     CompleteSquareArea(unsigned int length, unsigned int width)
@@ -42,8 +42,8 @@ public:
                 squares[i * width + j] = nullptr;
             }
         }
-    };*/
+    };
 };
-
+*/
 
 #endif //PROJECTDOGE_SQUAREAREA_H
