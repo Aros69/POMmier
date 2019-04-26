@@ -1,12 +1,13 @@
 #include "SquareArea.h"
 
 
-/*
-SquareArea::~SquareArea() {
-    delete[](squares);
-    squares = nullptr;
+
+SquareArea::SquareArea(int x, int y) {
+    for (int i = 0; i < x*y; i++) {
+        squares.push_back(Square());
+    }
 }
-*/
+
 Square SquareArea::getSquare(int x, int y) {
     for (int i = 0; i < squares.size(); i++) {
         if (squares.at(i).getX() == x
