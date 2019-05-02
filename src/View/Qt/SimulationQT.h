@@ -3,22 +3,25 @@
 
 #include <iostream>
 #include <thread>
+#include <unistd.h>
+
 #include <QApplication>
+#include <QTimer>
 #include <QtWidgets/QGraphicsScene>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QGraphicsRectItem>
 
 #include "../../Controller/WorldController.h"
 #include "../../Model/QtModel/SimulationModel.h"
 #include "QtVegetationView.h"
 
-class SimulationQt {
+class SimulationQt : public QObject{
 private:
     QApplication *app;
     QGraphicsView *view;
     QGraphicsScene scene;
-    std::list<QtVegetationView> vegetationViews;
+    std::list<QtVegetationView *> vegetationViews;
 
-    //SimulationModel model;
     WorldController * controller;
 
     void initModel();
@@ -32,11 +35,11 @@ public:
 
     ~SimulationQt();
 
-    void createVegetation(double posX, double posY, double orientation);
-
     int launchSimulation();
 
     int updateSimulation();
+
+    void updateTest();
 };
 
 #endif //POMMIER_SIMULATIONQT_H

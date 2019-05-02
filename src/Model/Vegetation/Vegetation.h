@@ -58,6 +58,8 @@ public:
 
     double getTimeOfDeath() const;
     void setTimeOfDeath(double timeOfDeath);
+
+    bool isDead() const;
 };
 
 

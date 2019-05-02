@@ -3,20 +3,30 @@
 
 
 #include <QtWidgets/QGraphicsScene>
-#include <src/Model/QtModel/QtVegetation.h>
+#include <QPainter>
+#include <src/Model/Vegetation/Vegetation.h>
 
-class QtVegetationView {
+class QtVegetationView : public QGraphicsItem{
 private:
-    QtVegetation *vegetation;
-    QGraphicsScene *scene;
-    QGraphicsItem *item;
+    Vegetation *vegetation;
+    // When alive : represent the center of the vegetation
+    // When dead  : represent the center of one small side of the rectangle
+    int posX;
+    int posY;
+    // For the death of the vegetation the orientation of the dead tree
+    double orientation;
 
 public:
     QtVegetationView() = delete;
 
-    QtVegetationView(QtVegetation *_vegetation, QGraphicsScene *_scene);
+    QtVegetationView(Vegetation *_vegetation, int positionX, int positionY);
 
-    void draw() const;
+    void advance(int advance);
+
+    QRectF boundingRect() const override;
+    QPainterPath shape() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 };
 
 

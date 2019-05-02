@@ -1,8 +1,5 @@
 #include <iostream>
 #include <QApplication>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QGraphicsScene>
-#include <QtWidgets/QGraphicsView>
 #include <src/View/Qt/SimulationQT.h>
 
 int main(int argc, char *argv[]) {
