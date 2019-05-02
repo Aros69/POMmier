@@ -41,6 +41,9 @@ void Vegetation::incrementStateOfPlant() {
     this->stateOfPlant++;
 }
 
+bool Vegetation::isDead() const {
+    return getTimeOfDeath() != 0;
+}
 
 
 

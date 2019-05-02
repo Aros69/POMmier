@@ -3,31 +3,44 @@
 #include "QtVegetationView.h"
 
 
-QtVegetationView::QtVegetationView(QtVegetation *_vegetation,
-                                   QGraphicsScene *_scene)
-        : vegetation(_vegetation), scene(_scene) {
-    item = new QGraphicsEllipseItem();
+QtVegetationView::QtVegetationView(Vegetation *_vegetation, int positionX,
+                                   int positionY)
+        : vegetation(_vegetation), posX(positionX), posY(positionY) {
+    // TODO get real orientation (in the model)
+    orientation = 0;
 }
 
-void QtVegetationView::draw() const {
-    if (scene == nullptr || vegetation == nullptr) { return; }
-    else {
-        // TODO use item variable instead of creating new item
-        // TODO add point to show the initial place of the tree
-        // TODO add orientation to dead tree
-        // TODO check big memory leak (QtVegetation and initScence)
+void QtVegetationView::advance(int step) {
+
+}
+
+QRectF QtVegetationView::boundingRect() const {
+    return QRectF(posX * 4, posY * 4, 8, 8);
+}
+
+void QtVegetationView::paint(QPainter *painter,
+                             const QStyleOptionGraphicsItem *option,
+                             QWidget *widget) {
+    // TODO add point to show the initial place of the tree
+    // TODO check big memory leak (QtVegetation and initScence)
+    if (vegetation != nullptr) {
         if (vegetation->isDead()) {
-            QGraphicsRectItem *temp = new QGraphicsRectItem(
-                    vegetation->getPositionX()*4, vegetation->getPositionY()*4, 8,
-                    8);
-            temp->setBrush(QBrush(Qt::red));
-            scene->addItem(temp);
+            painter->setBrush(QColor(255, 0, 0));
+            // TODO add orientation to dead tree
+            painter->drawRect(posX * 4, posY * 4,
+                              vegetation->getStateOfPlant(),
+                              vegetation->getStateOfPlant());
         } else {
-            QGraphicsEllipseItem *temp = new QGraphicsEllipseItem(
-                    vegetation->getPositionX()*4, vegetation->getPositionY()*4, 8,
-                    8);
-            temp->setBrush(QBrush(Qt::green));
-            scene->addItem(temp);
+            painter->setBrush(QColor(0, 255, 0));
+            painter->drawEllipse(posX * 4, posY * 4,
+                                 vegetation->getStateOfPlant(),
+                                 vegetation->getStateOfPlant());
         }
     }
+}
+
+QPainterPath QtVegetationView::shape() const {
+    QPainterPath path;
+    path.addRect(posX * 4, posY * 4, 8, 8);
+    return path;
 }
