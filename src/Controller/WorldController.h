@@ -9,6 +9,9 @@
 class WorldController {
 protected:
     SquareArea *world;
+    std::list<Vegetation*> vegetations;
+    Ground* ground;
+    Sky* sky;
     int numberOfSteps;
 
 public:

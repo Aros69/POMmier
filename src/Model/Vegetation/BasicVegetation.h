@@ -9,28 +9,30 @@
 #include "Vegetation.h"
 #include "../World/Square.h"
 
-class BasicVegetation : public Vegetation{
+class BasicVegetation : public Vegetation {
 public:
-    BasicVegetation() {halfLife = 50.0;};
+    BasicVegetation() { halfLife = 50.0; };
+
+    BasicVegetation(unsigned int x, unsigned int y, double birthTime);
 
     virtual ~BasicVegetation() = default;
 
 protected:
-    bool testDeath (double currentTime);
+    bool testDeath(double currentTime);
 
-    void growth (bool b);
+    void growth(bool b);
 
-    void changeModel (std::string *list, int state);
+    void changeModel(std::string *list, int state);
 
-    bool testGrowth (Square **neighborhood);
+    bool testGrowth(Square **neighborhood);
 
-    void changeResources (Square **neighborhood, int change);
+    void changeResources(Square **neighborhood, int change);
 
-    bool testGermination (Square **neighborhood);
+    bool testGermination(Square **neighborhood);
 
-    void decomposition ();
+    void decomposition();
 
-    bool checkTimeBetweenStates (double timeBetween, double currentTime);
+    bool checkTimeBetweenStates(double timeBetween, double currentTime);
 };
 
 

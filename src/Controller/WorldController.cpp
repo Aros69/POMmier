@@ -3,7 +3,6 @@
 #include "WorldController.h"
 
 WorldController::WorldController(unsigned int length, unsigned int width) {
-    //std::cout<<
     world = new SquareArea(static_cast<int>(length), static_cast<int>(width));
     numberOfSteps = 0;
 }

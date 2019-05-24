@@ -23,7 +23,7 @@ add_executable(POMmier.exe src/main.cpp
         src/Controller/VegetationController.cpp
         src/Controller/VegetationController.h
         src/Controller/SquareController.cpp
-        src/Controller/SquareController.h)
+        src/Controller/SquareController.h src/Model/Ground/BasicGround.cpp src/Model/Ground/BasicGround.h)
 
 # Find the QtWidgets library
 find_package(Qt5Widgets CONFIG REQUIRED)

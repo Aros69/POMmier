@@ -1,9 +1,14 @@
-//
-// Created by chris on 20/02/19.
-//
 
 #include "BasicVegetation.h"
 
+BasicVegetation::BasicVegetation(unsigned int x, unsigned int y,
+                                 double birthTime) {
+    posX = x;
+    posY = y;
+    timeOfBirth = birthTime;
+    halfLife = 50.0;
+    timeOfDeath = 0.0;
+}
 
 bool BasicVegetation::testDeath (double currentTime) {
     return ((halfLife - (currentTime - timeOfBirth)) <= 0)? true : false;

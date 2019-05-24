@@ -36,21 +36,4 @@ public:
     getPartOfSquareArea(int xCenter, int yCenter, int radius);
 };
 
-/*class CompleteSquareArea : public SquareArea {
-
-public:
-    CompleteSquareArea(int length, int width)
-            : SquareArea(length, width) {};
-
-    /*virtual ~CompleteSquareArea() override {
-        for (unsigned int i = 0; i < length; ++i) {
-            for (unsigned int j = 0; j < width; ++j) {
-                delete (squares[i * width + j]);
-                squares[i * width + j] = nullptr;
-            }
-        }
-    };
-};
-*/
-
 #endif //PROJECTDOGE_SQUAREAREA_H
