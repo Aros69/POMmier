@@ -15,4 +15,4 @@ class VegetationController {
 };
 
 
-#endif POMMIER_VEGETATIONCONTROLLER_H
+#endif //POMMIER_VEGETATIONCONTROLLER_H

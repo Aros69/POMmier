@@ -15,7 +15,7 @@ void QtVegetationView::advance(int step) {
 }
 
 QRectF QtVegetationView::boundingRect() const {
-    return QRectF(posX * 4, posY * 4, 8, 8);
+    return QRectF(posX, posY, 8, 8);
 }
 
 void QtVegetationView::paint(QPainter *painter,
@@ -27,12 +27,13 @@ void QtVegetationView::paint(QPainter *painter,
         if (vegetation->isDead()) {
             painter->setBrush(QColor(255, 0, 0));
             // TODO add orientation to dead tree
-            painter->drawRect(posX * 4, posY * 4,
-                              vegetation->getStateOfPlant(),
-                              vegetation->getStateOfPlant());
+            painter->drawRect(posX-vegetation->getStateOfPlant()/4, posY,
+                              vegetation->getStateOfPlant()/2,
+                              vegetation->getStateOfPlant()*2);
         } else {
             painter->setBrush(QColor(0, 255, 0));
-            painter->drawEllipse(posX * 4, posY * 4,
+            painter->drawEllipse(posX - vegetation->getStateOfPlant()/2,
+                                 posY - vegetation->getStateOfPlant()/2,
                                  vegetation->getStateOfPlant(),
                                  vegetation->getStateOfPlant());
         }

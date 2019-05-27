@@ -41,6 +41,12 @@ void Vegetation::incrementStateOfPlant() {
     this->stateOfPlant++;
 }
 
+void Vegetation::decrementStateOfPlant() {
+    if (stateOfPlant > 0) {
+        this->stateOfPlant--;
+    }
+}
+
 bool Vegetation::isDead() const {
     return getTimeOfDeath() != 0;
 }

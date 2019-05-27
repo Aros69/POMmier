@@ -16,15 +16,6 @@ set(CMAKE_AUTOUIC ON)
 file(GLOB_RECURSE MODEL_SRC_FILES
         "src/Model/*")
 
-add_executable(POMmier.exe src/main.cpp
-        ${MODEL_SRC_FILES}
-        src/Controller/WorldController.cpp
-        src/Controller/WorldController.h
-        src/Controller/VegetationController.cpp
-        src/Controller/VegetationController.h
-        src/Controller/SquareController.cpp
-        src/Controller/SquareController.h src/Model/Ground/BasicGround.cpp src/Model/Ground/BasicGround.h)
-
 # Find the QtWidgets library
 find_package(Qt5Widgets CONFIG REQUIRED)
 

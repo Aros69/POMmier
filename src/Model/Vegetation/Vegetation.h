@@ -13,6 +13,7 @@ protected:
     double LastStateChange = timeOfBirth;
     unsigned int posX;
     unsigned int posY;
+    unsigned int orientation = 0;
 public:
     double getHalfLife() const;
 
@@ -22,6 +23,8 @@ public:
 
     void incrementStateOfPlant();
 
+    void decrementStateOfPlant();
+
     void setLastStateChange(double LastStateChange);
 
     double getLastStateChange() const;
@@ -29,6 +32,8 @@ public:
     unsigned int getPosX() { return posX; }
 
     unsigned int getPosY() { return posY; }
+
+    unsigned int getOrientation() { return orientation; };
 
 protected:
 

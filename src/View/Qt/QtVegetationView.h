@@ -6,7 +6,7 @@
 #include <QPainter>
 #include <src/Model/Vegetation/Vegetation.h>
 
-class QtVegetationView : public QGraphicsItem{
+class QtVegetationView : public QGraphicsItem {
 private:
     Vegetation *vegetation;
     // When alive : represent the center of the vegetation
@@ -24,9 +24,13 @@ public:
     void advance(int advance);
 
     QRectF boundingRect() const override;
+
     QPainterPath shape() const override;
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
+
+    Vegetation *getVegetation() { return vegetation; };
 };
 
 

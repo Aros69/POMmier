@@ -8,14 +8,7 @@
 
 class WorldController {
 protected:
-    SquareArea *world;
-    std::list<Vegetation*> vegetations;
-    Ground* ground;
-    Sky* sky;
-    int numberOfSteps;
-
-public:
-    time_t getTimer() const;
+    World* world;
 
 public:
     //WorldController() : WorldController(10, 10) {};
@@ -24,17 +17,18 @@ public:
 
     ~WorldController();
 
-    SquareArea *getWorld() const { return world; };
+    //SquareArea *getWorld() const { return world; };
+    World *getWorld() const { return world; };
 
-    Square getSquare(unsigned int x,
-                      unsigned int y) const { return world->getSquare(x, y); }
+    /*Square getSquare(unsigned int x,
+                      unsigned int y) const { return world->getSquare(x, y); }*/
 
-    void worldGeneration(); // generate the world at random
+    //void worldGeneration(); // generate the world at random
 
     void worldStep(); // the next step in the world, more vegetation is born, grows or dies
 
-    void treeFall (int x, int y); // kill plant and chance of killing more plants
+    //void treeFall (int x, int y); // kill plant and chance of killing more plants
 };
 
 
-#endif POMMIER_WORLDCONTROLLER_H
+#endif //POMMIER_WORLDCONTROLLER_H

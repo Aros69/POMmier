@@ -9,9 +9,9 @@
 
 class World {
 private:
-    std::list<Vegetation*> vegetations;
-    Ground* ground;
-    Sky* sky;
+    std::list<Vegetation *> vegetations;
+    Ground *ground;
+    Sky *sky;
     unsigned int v_length;
     unsigned int v_width;
     unsigned int numberOfSteps;
@@ -24,11 +24,17 @@ public:
 
     ~World();
 
+    unsigned int getLength() const { return v_length; };
+
+    unsigned int getWidth() const { return v_width; };
+
+    std::list<Vegetation *> getVegetations() const { return vegetations; };
+
     void worldGeneration();
 
     void worldStep();
 
-    void treeFall(int x, int y);
+    void treeFall(Vegetation *vegetationDying);
 
     //const CompleteSquareArea * getCompleteSquareArea() const { return &completeSquareArea; };
 

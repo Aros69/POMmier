@@ -16,4 +16,4 @@ class SquareController {
 };
 
 
-#endif POMMIER_SQUARECONTROLLER_H
+#endif //POMMIER_SQUARECONTROLLER_H

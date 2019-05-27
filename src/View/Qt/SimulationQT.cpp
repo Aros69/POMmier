@@ -17,9 +17,8 @@ SimulationQt::~SimulationQt() {
 
 void SimulationQt::initModel() {
     // TODO Do a better function
-    controller = new WorldController(256, 128);
+    controller = new WorldController(1024, 512);
     std::cout << "Alloc ok\n";
-    controller->worldGeneration();
     std::cout << "Init ok\n";
 }
 
@@ -27,37 +26,47 @@ void SimulationQt::initScene() {
     // TODO Find a better way to define the size of the window
     // Use a rectangle at the border of the window to define his size
     QGraphicsRectItem *temp =
-            new QGraphicsRectItem(0, 0, controller->getWorld()->getLength() * 4,
-                                  controller->getWorld()->getWidth() * 4);
+            new QGraphicsRectItem(0, 0, controller->getWorld()->getLength(),
+                                  controller->getWorld()->getWidth());
     temp->setPen(Qt::NoPen);
     scene.addItem(temp);
     /*view->resize(controller->getWorld()->getLength() * 4,
                  controller->getWorld()->getWidth() * 4);*/
 
-    SquareArea *world = controller->getWorld();
-    for (int i = 0; i < controller->getWorld()->getLength(); i++) {
-        for (int j = 0; j < controller->getWorld()->getWidth(); j++) {
-            if (world->getSquare(i, j).getVegetation() != nullptr) {
-                vegetationViews.push_back(new QtVegetationView(
-                        world->getSquare(i, j).getVegetation(), i, j));
-                scene.addItem(vegetationViews.back());
-            }
-        }
+    World *world = controller->getWorld();
+    for (auto vegetation : world->getVegetations()) {
+        vegetationViews.push_back(new QtVegetationView(
+                vegetation, vegetation->getPosX(), vegetation->getPosY()));
+        scene.addItem(vegetationViews.back());
     }
     /*for (const QtVegetationView view : vegetationViews) {
-        view.draw();
+    view.draw();
     }*/
 }
 
 void SimulationQt::updateTest() {
     int quit = 0;
-    while (quit < 10000) {
+    while (quit < 100) {
         // Update each second
-        sleep(1);
-        std::cout << "Update : " << quit << "\n";
+        //sleep(1);
+        // Update each half second
+        usleep(500000);
+        //std::cout << "Update : " << quit << "\n";
         controller->worldStep();
-        scene.update(0, 0, controller->getWorld()->getLength() * 4,
-                     controller->getWorld()->getWidth() * 4);
+        int x = 0;
+        for (auto vegetation : vegetationViews) {
+            if (vegetation->getVegetation()->getTimeOfDeath() == 0
+                && vegetation->getVegetation()->getStateOfPlant() == 0) {
+                //if (vegetation->getVegetation() == nullptr) {
+                vegetationViews.remove(vegetation);
+                delete vegetation;
+                vegetation = nullptr;
+            }
+            x++;
+        }
+        std::cout << "Nb vege : " << x << "\n";
+        scene.update(0, 0, controller->getWorld()->getLength(),
+                     controller->getWorld()->getWidth());
         ++quit;
     }
 }
@@ -70,6 +79,7 @@ int SimulationQt::launchSimulation() {
     QTimer timer;
 
     QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
+    // Update the scene to have 30 fps
     timer.start(1000 / 33);
     view->show();
 
