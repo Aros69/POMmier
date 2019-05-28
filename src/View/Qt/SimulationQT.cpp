@@ -50,10 +50,10 @@ void SimulationQt::updateTest() {
         // Update each second
         //sleep(1);
         // Update each half second
-        usleep(500000);
-        //std::cout << "Update : " << quit << "\n";
+        usleep(250000);
+        std::cout << "Update : " << quit << "\n";
         controller->worldStep();
-        int x = 0;
+        //int x = 0;
         for (auto vegetation : vegetationViews) {
             if (vegetation->getVegetation()->getTimeOfDeath() == 0
                 && vegetation->getVegetation()->getStateOfPlant() == 0) {
@@ -62,9 +62,9 @@ void SimulationQt::updateTest() {
                 delete vegetation;
                 vegetation = nullptr;
             }
-            x++;
+            //x++;
         }
-        std::cout << "Nb vege : " << x << "\n";
+        //std::cout << "Nb vege : " << x << "\n";
         scene.update(0, 0, controller->getWorld()->getLength(),
                      controller->getWorld()->getWidth());
         ++quit;

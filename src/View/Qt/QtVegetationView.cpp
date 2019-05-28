@@ -1,5 +1,6 @@
 #include <QtWidgets/QGraphicsEllipseItem>
 #include <iostream>
+#include <cmath>
 #include "QtVegetationView.h"
 
 
@@ -25,11 +26,16 @@ void QtVegetationView::paint(QPainter *painter,
     // TODO check big memory leak (QtVegetation and initScence)
     if (vegetation != nullptr) {
         if (vegetation->isDead()) {
+            painter->setTransform(QTransform().rotate(45));
+            //painter->rotate(0);
+            //painter->setTransform(rotationTransform);
+
             painter->setBrush(QColor(255, 0, 0));
             // TODO add orientation to dead tree
             painter->drawRect(posX-vegetation->getStateOfPlant()/4, posY,
                               vegetation->getStateOfPlant()/2,
                               vegetation->getStateOfPlant()*2);
+            painter->resetTransform();
         } else {
             painter->setBrush(QColor(0, 255, 0));
             painter->drawEllipse(posX - vegetation->getStateOfPlant()/2,
