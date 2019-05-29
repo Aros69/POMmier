@@ -18,7 +18,7 @@ Square &SquareArea::getSquare(int x, int y) {
     if (x >= length || x < 0 || y >= width || y < 0) {
         std::cout<<"ERROR WHEN GETTING SQUARE\n";
         return squares[0];
-        // TODO WHEN RELEASE
+        // TODO When we don't want to have a cout in the real simulation
         //exit(0);
     } else {
         return squares[x * width + y];

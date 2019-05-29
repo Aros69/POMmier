@@ -23,9 +23,6 @@ World::~World() {
 void World::worldGeneration() {
     for (int i = 0; i < v_length; i++) {
         for (int j = 0; j < v_width; j++) {
-            /*getWorld()->getSquare(i, j).getSky().setLuminosity(1);
-            getWorld()->getSquare(i, j).getGround().setAltitude(1);
-            getWorld()->getSquare(i, j).getGround().setResources(1);*/
             // TODO C++11 Random
             if (rand() % 1000 == 0) {
                 vegetations.push_front(
@@ -37,9 +34,6 @@ void World::worldGeneration() {
 
 void World::worldStep() {
     numberOfSteps++;
-    // TODO CHECK IF SQUARE IS OUT OF BOUND OF SQUARE AREA
-    // when doing x+1, you can be out of bound :(
-    // same for x+1, x-1, y-1 and y+1
     std::list<Vegetation *> deadVegetations;
     for (auto vegetation : vegetations) {
         //kill plants

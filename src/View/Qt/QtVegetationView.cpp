@@ -4,50 +4,50 @@
 #include "QtVegetationView.h"
 
 
-QtVegetationView::QtVegetationView(Vegetation *_vegetation, int positionX,
-                                   int positionY)
-        : vegetation(_vegetation), posX(positionX), posY(positionY) {
-    // TODO get real orientation (in the model)
-    orientation = 0;
+QtVegetationView::QtVegetationView(std::list<Vegetation *> *_vegetations)
+        : vegetations(_vegetations) {
 }
 
 void QtVegetationView::advance(int step) {
-
+// Function I don't use so we don't care
 }
 
 QRectF QtVegetationView::boundingRect() const {
-    return QRectF(posX, posY, 8, 8);
+    // Function I don't use so we don't care but need to be here
+    return QRectF(1, 1, 1, 1);
 }
 
 void QtVegetationView::paint(QPainter *painter,
                              const QStyleOptionGraphicsItem *option,
                              QWidget *widget) {
     // TODO add point to show the initial place of the tree
-    // TODO check big memory leak (QtVegetation and initScence)
-    if (vegetation != nullptr) {
-        if (vegetation->isDead()) {
-            painter->setTransform(QTransform().rotate(45));
-            //painter->rotate(0);
-            //painter->setTransform(rotationTransform);
-
-            painter->setBrush(QColor(255, 0, 0));
-            // TODO add orientation to dead tree
-            painter->drawRect(posX-vegetation->getStateOfPlant()/4, posY,
-                              vegetation->getStateOfPlant()/2,
-                              vegetation->getStateOfPlant()*2);
-            painter->resetTransform();
-        } else {
-            painter->setBrush(QColor(0, 255, 0));
-            painter->drawEllipse(posX - vegetation->getStateOfPlant()/2,
-                                 posY - vegetation->getStateOfPlant()/2,
-                                 vegetation->getStateOfPlant(),
-                                 vegetation->getStateOfPlant());
+    for (auto vegetation : *vegetations) {
+        if (vegetation != nullptr) {
+            if (vegetation->isDead()) {
+                painter->setBrush(QColor(255, 0, 0));
+                painter->translate(vegetation->getPosX() -
+                                   vegetation->getStateOfPlant() / 4,
+                                   vegetation->getPosY());
+                painter->rotate(vegetation->getOrientation());
+                painter->drawRect(0, 0, vegetation->getStateOfPlant() / 2,
+                                  vegetation->getStateOfPlant() * 2);
+                painter->resetTransform();
+            } else {
+                painter->setBrush(QColor(0, 255, 0));
+                painter->drawEllipse(vegetation->getPosX() -
+                                     vegetation->getStateOfPlant() / 2,
+                                     vegetation->getPosY() -
+                                     vegetation->getStateOfPlant() / 2,
+                                     vegetation->getStateOfPlant(),
+                                     vegetation->getStateOfPlant());
+            }
         }
     }
 }
 
 QPainterPath QtVegetationView::shape() const {
+    // Function I don't use so we don't care but need to be here
     QPainterPath path;
-    path.addRect(posX * 4, posY * 4, 8, 8);
+    path.addRect(1,1,1,1);
     return path;
 }

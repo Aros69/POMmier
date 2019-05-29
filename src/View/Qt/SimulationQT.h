@@ -12,7 +12,6 @@
 #include <QtWidgets/QGraphicsRectItem>
 
 #include "../../Controller/WorldController.h"
-#include "../../Model/QtModel/SimulationModel.h"
 #include "QtVegetationView.h"
 
 class SimulationQt : public QObject{
@@ -20,7 +19,7 @@ private:
     QApplication *app;
     QGraphicsView *view;
     QGraphicsScene scene;
-    std::list<QtVegetationView *> vegetationViews;
+    QtVegetationView * vegetationView;
 
     WorldController * controller;
 

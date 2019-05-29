@@ -28,7 +28,7 @@ public:
 
     unsigned int getWidth() const { return v_width; };
 
-    std::list<Vegetation *> getVegetations() const { return vegetations; };
+    std::list<Vegetation *>* getVegetations() { return &vegetations; };
 
     void worldGeneration();
 

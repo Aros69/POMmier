@@ -8,18 +8,12 @@
 
 class QtVegetationView : public QGraphicsItem {
 private:
-    Vegetation *vegetation;
-    // When alive : represent the center of the vegetation
-    // When dead  : represent the center of one small side of the rectangle
-    int posX;
-    int posY;
-    // For the death of the vegetation the orientation of the dead tree
-    double orientation;
+    std::list<Vegetation*>* vegetations;
 
 public:
     QtVegetationView() = delete;
 
-    QtVegetationView(Vegetation *_vegetation, int positionX, int positionY);
+    QtVegetationView(std::list<Vegetation *>* _vegetations);
 
     void advance(int advance);
 
@@ -29,8 +23,6 @@ public:
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
-
-    Vegetation *getVegetation() { return vegetation; };
 };
 
 

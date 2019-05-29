@@ -9,7 +9,7 @@ class Vegetation {
 protected:
     double halfLife;
     double timeOfBirth;
-    double timeOfDeath;
+    double timeOfDeath = 0;
     double LastStateChange = timeOfBirth;
     unsigned int posX;
     unsigned int posY;

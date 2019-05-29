@@ -8,6 +8,7 @@ BasicVegetation::BasicVegetation(unsigned int x, unsigned int y,
     timeOfBirth = birthTime;
     halfLife = 50.0;
     timeOfDeath = 0.0;
+    orientation = rand()%360;
 }
 
 bool BasicVegetation::testDeath (double currentTime) {

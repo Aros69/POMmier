@@ -33,14 +33,12 @@ void SimulationQt::initScene() {
     /*view->resize(controller->getWorld()->getLength() * 4,
                  controller->getWorld()->getWidth() * 4);*/
 
-    World *world = controller->getWorld();
-    for (auto vegetation : world->getVegetations()) {
-        vegetationViews.push_back(new QtVegetationView(
-                vegetation, vegetation->getPosX(), vegetation->getPosY()));
-        scene.addItem(vegetationViews.back());
-    }
-    /*for (const QtVegetationView view : vegetationViews) {
-    view.draw();
+    //World *world = controller->getWorld();
+    vegetationView = new QtVegetationView(controller->getWorld()->getVegetations());
+    scene.addItem(vegetationView);
+    /*for (auto vegetation : world->getVegetations()) {
+        vegetationViews.push_front(new QtVegetationView(vegetation));
+        scene.addItem(vegetationViews.front());
     }*/
 }
 
@@ -49,22 +47,10 @@ void SimulationQt::updateTest() {
     while (quit < 100) {
         // Update each second
         //sleep(1);
-        // Update each half second
+        // Update note each second (quicker) I would say 4 times per second
         usleep(250000);
         std::cout << "Update : " << quit << "\n";
         controller->worldStep();
-        //int x = 0;
-        for (auto vegetation : vegetationViews) {
-            if (vegetation->getVegetation()->getTimeOfDeath() == 0
-                && vegetation->getVegetation()->getStateOfPlant() == 0) {
-                //if (vegetation->getVegetation() == nullptr) {
-                vegetationViews.remove(vegetation);
-                delete vegetation;
-                vegetation = nullptr;
-            }
-            //x++;
-        }
-        //std::cout << "Nb vege : " << x << "\n";
         scene.update(0, 0, controller->getWorld()->getLength(),
                      controller->getWorld()->getWidth());
         ++quit;
