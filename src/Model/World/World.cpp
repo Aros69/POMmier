@@ -6,7 +6,9 @@ World::World(unsigned int length, unsigned int width) {
     numberOfSteps = 0;
     sky = new Sky;
     ground = new BasicGround;
-    worldGeneration();
+
+    //worldGeneration();
+    demoWorldGeneration();
 }
 
 World::~World() {
@@ -32,6 +34,16 @@ void World::worldGeneration() {
         }
         ++nbMaxVege;
     }
+}
+
+void World::demoWorldGeneration(){
+    auto tempVege2 = new BasicVegetation(50, 100, numberOfSteps);
+    tempVege2->setStateOfPlant(10);
+    vegetations.push_front(tempVege2);
+    auto tempVege1 = new BasicVegetation(50, 50, numberOfSteps);
+    tempVege1->setStateOfPlant(25);
+    tempVege1->setOrientation(0);
+    vegetations.push_front(tempVege1);
 }
 
 void World::worldStep() {
@@ -84,8 +96,8 @@ void World::treeFall(Vegetation *vegetationDying) {
     for (auto vegetation : vegetations) {
         if (vegetationDying != vegetation) {
             if(vegetationDying->collideWith(vegetation)) {
-                vegetation->setOrientation(vegetationDying->getOrientation());
-                treeFall(vegetation);
+                /*vegetation->setOrientation(vegetationDying->getOrientation());
+                treeFall(vegetation);*/
             }
         }
     }

@@ -25,12 +25,6 @@ void QtVegetationView::paint(QPainter *painter,
         if (vegetation != nullptr) {
             if (vegetation->isDead()) {
                 painter->setBrush(QColor(220, 20, 60));
-                /*painter->translate(vegetation->getPosX(),
-                                   vegetation->getPosY());
-                painter->rotate(vegetation->getOrientation());
-                painter->drawRect(0, 0, vegetation->getStateOfPlant() / 2,
-                                  vegetation->getStateOfPlant() * 2);
-                painter->resetTransform();*/
                 painter->drawPolygon(createGoodRect(vegetation));
             } else {
                 painter->setBrush(QColor(0, 255, 0));

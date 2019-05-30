@@ -47,8 +47,9 @@ void SimulationQt::updateTest() {
     while (quit < 1000) {
         // Update each second
         //sleep(1);
+        sleep(2);
         // Update more than each second (quicker)
-        usleep(50000);
+        //usleep(50000);
         std::cout << "Update : " << quit << "\n";
         controller->worldStep();
         scene.update(0, 0, controller->getWorld()->getLength(),

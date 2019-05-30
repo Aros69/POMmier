@@ -33,6 +33,8 @@ public:
 
     void worldGeneration();
 
+    void demoWorldGeneration();
+
     void worldStep();
 
     void treeFall(Vegetation *vegetationDying);
