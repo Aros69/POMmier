@@ -1,11 +1,8 @@
-//
-// Created by chris on 20/02/19.
-//
-
-#ifndef PROJECTDOGE_BASICVEGETATION_H
-#define PROJECTDOGE_BASICVEGETATION_H
+#ifndef POMMIER_BASICVEGETATION_H
+#define POMMIER_BASICVEGETATION_H
 
 
+#include <list>
 #include "Vegetation.h"
 #include "../World/Square.h"
 
@@ -22,18 +19,20 @@ protected:
 
     void growth(bool b);
 
-    void changeModel(std::string *list, int state);
-
-    bool testGrowth(Square **neighborhood);
-
-    void changeResources(Square **neighborhood, int change);
-
-    bool testGermination(Square **neighborhood);
-
     void decomposition();
 
     bool checkTimeBetweenStates(double timeBetween, double currentTime);
+
+    bool contain(double x, double y);
+
+    bool collideWith(Vegetation *vegetation);
+
+    void incrementStateOfPlant(Ground *ground);
+
+    void decrementStateOfPlant(Ground *ground);
+
+    std::vector<PointCartesien> getDeadVegetationModel();
 };
 
 
-#endif //PROJECTDOGE_BASICVEGETATION_H
+#endif //POMMIER_BASICVEGETATION_H

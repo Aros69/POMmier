@@ -15,6 +15,7 @@ private:
     unsigned int v_length;
     unsigned int v_width;
     unsigned int numberOfSteps;
+    unsigned int nbMaxVege;
 
 public:
 
@@ -28,7 +29,7 @@ public:
 
     unsigned int getWidth() const { return v_width; };
 
-    std::list<Vegetation *>* getVegetations() { return &vegetations; };
+    std::list<Vegetation *> *getVegetations() { return &vegetations; };
 
     void worldGeneration();
 
@@ -36,17 +37,20 @@ public:
 
     void treeFall(Vegetation *vegetationDying);
 
-    //const CompleteSquareArea * getCompleteSquareArea() const { return &completeSquareArea; };
+    /**
+     * Test if the point is already taken by another vegetation
+     * @param x point location parameter
+     * @param y point location parameter
+     * @return true if there is already a vegetation at this point
+     */
+    bool placeTaken(unsigned int x, unsigned int y);
 
-    //Square *getSquare(unsigned int x, unsigned int y);
-
-    //SquareArea *getPartOfSquareArea(int xCenter, int yCenter, int radius);
-
-    //unsigned int
-    //getLength() const { return getCompleteSquareArea()->getLength(); }
-
-    //unsigned int
-    //getWidth() const { return getCompleteSquareArea()->getWidth(); }*/
+    /**
+     * Test if the vegetation is colliding with anoter one in the world
+     * @param vegetation the vegetation tested
+     * @return true if the vegetation is collinding with another
+     */
+    bool placeTaken(Vegetation* vegetation);
 };
 
 

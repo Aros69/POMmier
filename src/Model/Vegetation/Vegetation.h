@@ -1,19 +1,12 @@
 #ifndef PROJECTDOGE_VEGETATION_H
 #define PROJECTDOGE_VEGETATION_H
 
-#include <string>
-
-class Square;
+#include <vector>
+#include "../Ground/Ground.h"
+#include "../../Utils/Point.h"
 
 class Vegetation {
-protected:
-    double halfLife;
-    double timeOfBirth;
-    double timeOfDeath = 0;
-    double LastStateChange = timeOfBirth;
-    unsigned int posX;
-    unsigned int posY;
-    unsigned int orientation = 0;
+
 public:
     double getHalfLife() const;
 
@@ -21,9 +14,9 @@ public:
 
     void setStateOfPlant(int stateOfPlant);
 
-    void incrementStateOfPlant();
+    virtual void incrementStateOfPlant(Ground *ground);
 
-    void decrementStateOfPlant();
+    virtual void decrementStateOfPlant(Ground *ground);
 
     void setLastStateChange(double LastStateChange);
 
@@ -35,40 +28,8 @@ public:
 
     unsigned int getOrientation() { return orientation; };
 
-protected:
-
-    int stateOfPlant = 0;
-    std::string listStateOfPlant[2] = {"pathToModel1", "pathToModel2"};
-    std::string stateOfPlantPath;
-    int stateOfDecomposition = 0;
-    std::string listStateOfDecomposition[2] = {"pathToModel1", "pathToModel2"};
-
-    virtual bool
-    testDeath(double currentTime) = 0; // checks if the plant must die
-
-    virtual void
-    growth(bool b) = 0; // if b true -> plant grows and changes it's state to bigger plant with a new model
-
-    virtual void changeModel(std::string *list,
-                             int state) = 0; // changes the plants path to switch model
-
-    virtual bool
-    testGrowth(Square **neighborhood) = 0; // tests if the plant can grow
-
-    virtual void changeResources(Square **neighborhood,
-                                 int change) = 0; // increases or decreases the resources in the area
-
-    virtual bool testGermination(
-            Square **neighborhood) = 0; // tests if plant can be born in it's location
-
-    virtual void decomposition() = 0; // incremente stateOfDecomposition
-
-    virtual bool checkTimeBetweenStates(double timeBetween,
-                                        double currentTime) = 0;   // returns true if timeBetween <
-    // currentTime - the time of the
-    // previous change of state
-
-public:
+    void
+    setOrientation(unsigned int _orientation) { orientation = _orientation; };
 
     virtual ~Vegetation() = default;
 
@@ -81,6 +42,57 @@ public:
     void setTimeOfDeath(double timeOfDeath);
 
     bool isDead() const;
+
+    /**
+     * Check if the point (x,y) is in the vegetation
+     * @param x point location parameter
+     * @param y point location parameter
+     * @return true if the point is in the vegetation
+     */
+    virtual bool contain(double x, double y) = 0;
+
+    /**
+     * Check if the to vegetation are colliding
+     * @param vegetation the other vegetation tested
+     * @return true if the two vegetation are colliding
+     */
+    virtual bool collideWith(Vegetation *vegetation) = 0;
+
+    virtual std::vector<PointCartesien> getDeadVegetationModel() = 0;
+
+protected:
+    double halfLife;
+    double timeOfBirth;
+    double timeOfDeath = 0;
+    double LastStateChange = timeOfBirth;
+    unsigned int posX;
+    unsigned int posY;
+    unsigned int orientation = 0;
+    // TODO maybe add a bool to reprensent the impossibility of growing ??
+    int stateOfPlant = 0;
+    int stateOfDecomposition = 0;
+
+    virtual bool
+    testDeath(double currentTime) = 0; // checks if the plant must die
+
+    virtual void
+    growth(bool b) = 0; // if b true -> plant grows and changes it's state to bigger plant with a new model
+
+    /*virtual bool
+    testGrowth(Square **neighborhood) = 0; // tests if the plant can grow
+
+    virtual void changeResources(Square **neighborhood,
+                                 int change) = 0; // increases or decreases the resources in the area
+
+    virtual bool testGermination(
+            Square **neighborhood) = 0; // tests if plant can be born in it's location*/
+
+    virtual void decomposition() = 0; // incremente stateOfDecomposition
+
+    virtual bool checkTimeBetweenStates(double timeBetween,
+                                        double currentTime) = 0;   // returns true if timeBetween <
+    // currentTime - the time of the
+    // previous change of state
 };
 
 

@@ -5,12 +5,19 @@
 
 #include "Ground.h"
 
-class BasicGround : public Ground{
+class BasicGround : public Ground {
 private:
-    double ressourceConcentration;
+    double resourceConcentration;
 public:
-    BasicGround() : Ground() {ressourceConcentration = 1;}
+    BasicGround() : Ground() { resourceConcentration = 1; }
 
+    double getResources() const { return resourceConcentration; };
+
+    double getResources(unsigned int x,
+                        unsigned int y) const { return resourceConcentration; };
+
+    bool takeResource(unsigned int x, unsigned int y);
+    bool addResource(unsigned int x, unsigned int y);
 };
 
 

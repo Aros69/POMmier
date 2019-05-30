@@ -37,11 +37,11 @@ void Vegetation::setStateOfPlant(int stateOfPlant) {
     this->stateOfPlant = stateOfPlant;
 }
 
-void Vegetation::incrementStateOfPlant() {
+void Vegetation::incrementStateOfPlant(Ground* ground) {
     this->stateOfPlant++;
 }
 
-void Vegetation::decrementStateOfPlant() {
+void Vegetation::decrementStateOfPlant(Ground* ground) {
     if (stateOfPlant > 0) {
         this->stateOfPlant--;
     }

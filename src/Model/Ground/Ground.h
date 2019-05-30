@@ -1,34 +1,39 @@
 #ifndef POMMIER_GROUND_H
 #define POMMIER_GROUND_H
 
-
-#include "../Resource/Resource.h"
-#include <list>
-
 class Ground {
 protected:
-    int altitude;
-    std::list<Resource> resources;
+    int v_altitude;
 
 public:
-    Ground();
+    Ground(): Ground(0){};
 
-    explicit Ground(int altitude);
+    Ground(int altitude){v_altitude = altitude;};
 
-    ~Ground();
+    int getAltitude() const { return v_altitude; }
 
-    int getAltitude() const { return altitude; }
+    virtual double getResources() const = 0;
 
-    const std::list<Resource> &getResources() const { return resources; }
+    virtual double getResources(unsigned int x,
+                                unsigned int y) const = 0;
 
-    void setAltitude(int altitude) { this->altitude = altitude; }
+    void setAltitude(int altitude) { v_altitude = altitude; };
 
-    void setResources(int resources) {
-        this->resources.front().setConcentration(resources);
-    }
+    /**
+     * Decrement resources
+     * @param x point location parameter
+     * @param y point location parameter
+     * @return true if there is enough resource
+     */
+    virtual bool takeResource(unsigned int x, unsigned int y) = 0;
 
-    //set the available resources in the terrain
-    void setAvailableResources() { setResources(1); };
+    /**
+     * Increment resources
+     * @param x point location parameter
+     * @param y point location parameter
+     * @return true if there is not too much resource
+     */
+    virtual bool addResource(unsigned int x, unsigned int y) = 0;
 };
 
 

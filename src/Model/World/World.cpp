@@ -21,6 +21,7 @@ World::~World() {
 }
 
 void World::worldGeneration() {
+    nbMaxVege = 0;
     for (int i = 0; i < v_length; i++) {
         for (int j = 0; j < v_width; j++) {
             // TODO C++11 Random
@@ -29,11 +30,24 @@ void World::worldGeneration() {
                         new BasicVegetation(i, j, numberOfSteps));
             }
         }
+        ++nbMaxVege;
     }
 }
 
 void World::worldStep() {
     numberOfSteps++;
+    for (int i = vegetations.size(); i < nbMaxVege; ++i) {
+        int x, y;
+        do {
+            x = rand() % v_length;
+            y = rand() % v_width;
+        } while (placeTaken(x, y));
+        // If there is enough resource and some luck we add a new vegetal
+        if (ground->getResources(x, y) / (rand() % 100) > 0.7) {
+            //std::cout << "Spawned vegetation at : " << x << ", " << y << "\n";
+            vegetations.push_front(new BasicVegetation(x, y, numberOfSteps));
+        }
+    }
     std::list<Vegetation *> deadVegetations;
     for (auto vegetation : vegetations) {
         //kill plants
@@ -41,28 +55,14 @@ void World::worldStep() {
             && vegetation->getTimeOfDeath() == 0) {
             treeFall(vegetation);
         }
-        // TODO CHECK IF WE CAN CREATE PLANT WITH THAT LOOKS SUSPICIOUS
-        // On dirait que tu crée une plante seuement s'il y en a une a coté !!!
-        // create new plants
-        // TODO REDO This part !
-        if (vegetation->getTimeOfDeath() == 0
-            && vegetation->getTimeOfBirth() < numberOfSteps) {
-            for (int x = vegetation->getPosX();
-                 x < vegetation->getPosX() + 2; x++) {
-                for (int y = vegetation->getPosY();
-                     y < vegetation->getPosY() + 2; y++) {
-                    if (rand() % 4 > 3) {
-                        vegetation->setTimeOfBirth(numberOfSteps);
-                        vegetation->setTimeOfDeath(0);
-                    }
-                }
-            }
-        }
         //grow plants or decompose them (if dead)
+
         if (vegetation->getTimeOfDeath() == 0) {
-            vegetation->incrementStateOfPlant();
+            if (!placeTaken(vegetation)) {
+                vegetation->incrementStateOfPlant(ground);
+            }
         } else {
-            vegetation->decrementStateOfPlant();
+            vegetation->decrementStateOfPlant(ground);
             if (vegetation->getStateOfPlant() == 0) {
                 deadVegetations.push_front(vegetation);
             }
@@ -81,62 +81,35 @@ void World::treeFall(Vegetation *vegetationDying) {
     if (vegetationDying != nullptr) {
         vegetationDying->setTimeOfDeath(numberOfSteps);
     }
-    /*int directionOfFall =
-            rand() % 8; // 0 up, 1 left, 2 down, 3 right, 4 top-left...
-
-    if (rand() % 20 == 0) {
-        if (directionOfFall == 0) {
-            if (world->getSquare(x, y + 1).getVegetation() != nullptr &&
-                world->getSquare(x, y + 1).getVegetation()->getTimeOfDeath() ==
-                0) {
-                treeFall(x, y + 1);
-            }
-        } else if (directionOfFall == 1) {
-            if (world->getSquare(x - 1, y).getVegetation() != nullptr &&
-                world->getSquare(x - 1, y).getVegetation()->getTimeOfDeath() ==
-                0) {
-                treeFall(x - 1, y);
-            }
-        } else if (directionOfFall == 2) {
-            if (world->getSquare(x, y - 1).getVegetation() != nullptr &&
-                world->getSquare(x, y - 1).getVegetation()->getTimeOfDeath() ==
-                0) {
-                treeFall(x, y - 1);
-            }
-        } else if (directionOfFall == 3) {
-            if (world->getSquare(x + 1, y).getVegetation() != nullptr &&
-                world->getSquare(x + 1, y).getVegetation()->getTimeOfDeath() ==
-                0) {
-                treeFall(x + 1, y);
-            }
-        } else if (directionOfFall == 4) {
-            if (world->getSquare(x - 1, y + 1).getVegetation() != nullptr &&
-                world->getSquare(x - 1,
-                                 y + 1).getVegetation()->getTimeOfDeath() ==
-                0) {
-                treeFall(x - 1, y + 1);
-            }
-        } else if (directionOfFall == 5) {
-            if (world->getSquare(x - 1, y - 1).getVegetation() != nullptr &&
-                world->getSquare(x - 1,
-                                 y - 1).getVegetation()->getTimeOfDeath() ==
-                0) {
-                treeFall(x - 1, y - 1);
-            }
-        } else if (directionOfFall == 6) {
-            if (world->getSquare(x + 1, y - 1).getVegetation() != nullptr &&
-                world->getSquare(x + 1,
-                                 y - 1).getVegetation()->getTimeOfDeath() ==
-                0) {
-                treeFall(x + 1, y - 1);
-            }
-        } else {
-            if (world->getSquare(x + 1, y + 1).getVegetation() != nullptr &&
-                world->getSquare(x + 1,
-                                 y + 1).getVegetation()->getTimeOfDeath() ==
-                0) {
-                treeFall(x + 1, y + 1);
+    for (auto vegetation : vegetations) {
+        if (vegetationDying != vegetation) {
+            if(vegetationDying->collideWith(vegetation)) {
+                vegetation->setOrientation(vegetationDying->getOrientation());
+                treeFall(vegetation);
             }
         }
-    }*/
+    }
+}
+
+bool World::placeTaken(unsigned int x, unsigned int y) {
+    bool placeIsTaken;
+    auto vegetationIterator = vegetations.begin();
+    do {
+        placeIsTaken = vegetationIterator.operator*()->contain(x, y);
+        vegetationIterator++;
+    } while (!placeIsTaken && vegetationIterator != vegetations.end());
+    return placeIsTaken;
+}
+
+bool World::placeTaken(Vegetation *vegetation) {
+    bool placeIsTaken;
+    auto vegetationIterator = vegetations.begin();
+    do {
+        if (*vegetationIterator != vegetation) {
+            placeIsTaken = vegetationIterator.operator*()->collideWith(
+                    vegetation);
+        }
+        vegetationIterator++;
+    } while (!placeIsTaken && vegetationIterator != vegetations.end());
+    return placeIsTaken;
 }

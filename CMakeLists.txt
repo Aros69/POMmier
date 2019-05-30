@@ -25,6 +25,6 @@ add_executable(POMmierQt.exe src/mainQt.cpp
         src/View/Qt/QtVegetationView.cpp
         src/View/Qt/QtVegetationView.h
         src/Controller/WorldController.cpp
-        src/Controller/WorldController.h)
+        src/Controller/WorldController.h src/Utils/Point.h)
 
 target_link_libraries(POMmierQt.exe Qt5::Widgets)

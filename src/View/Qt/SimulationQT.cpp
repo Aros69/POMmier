@@ -44,11 +44,11 @@ void SimulationQt::initScene() {
 
 void SimulationQt::updateTest() {
     int quit = 0;
-    while (quit < 100) {
+    while (quit < 1000) {
         // Update each second
         //sleep(1);
-        // Update note each second (quicker) I would say 4 times per second
-        usleep(250000);
+        // Update more than each second (quicker)
+        usleep(50000);
         std::cout << "Update : " << quit << "\n";
         controller->worldStep();
         scene.update(0, 0, controller->getWorld()->getLength(),

@@ -23,6 +23,8 @@ public:
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
+
+    QPolygonF createGoodRect(Vegetation* vegetation) const;
 };
 
 
