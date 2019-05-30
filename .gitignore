@@ -83,3 +83,5 @@ fabric.properties
 POMmier.cbp
 cmake_install.cmake
 Makefile
+POMmier.exe_autogen/
+POMmierQt.exe_autogen/
